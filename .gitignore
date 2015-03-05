@@ -1,0 +1,15 @@
+*.py[co]
+.*.sw[po]
+.settings
+.project
+.pydevproject
+.idea
+
+*.DS_Store
+
+
+
+
+src/settings/__init__.py
+src/settings/local.py
+src/media/
