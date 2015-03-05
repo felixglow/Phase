@@ -9,35 +9,35 @@
 			<div id="main-content" class="col-2-3">
 				<div class="wrap-col">
 					<article>
+                        {% for obj in article_obj %}
 						<div class="heading">
-							<h2><a href="#">Sed accumsan libero quis mi commodo et suscipit</a></h2>
+							<h2><a href="#">{{ obj.name }}</a></h2>
 						</div>
 						<div class="content">
-							<img src="{% static 'images/img1.jpg'%}" width="100%"/>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.</p>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.</p>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.</p>
-						</div>
+							<img src="{{ obj.image.url }}" width="100%"/>
+                            <p>{{ obj.content|safe}}</p>
+							</div>
 						<div class="info">
 							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
 						</div>
+                        {% endfor %}
 					</article>
 					
-					<section>
-						<h3>Leave a Comment</h3>
-						
-						<form id="contact-form" method="post">
-						    <fieldset>
-						        <label><input name="email" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" /></label>
-						        <label><input name="subject" value="Subject" onBlur="if(this.value=='') this.value='Subject'" onFocus="if(this.value =='Subject' ) this.value=''" /></label>
-						        <textarea onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''">Message</textarea>
-						        <div class="buttons">
-						            <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>
-						            <a href="#" onClick="document.getElementById('contact-form').submit()">Send</a>
-						        </div>											
-						    </fieldset>           
-						</form>
-					</section>
+{#					<section>#}
+{#						<h3>Leave a Comment</h3>#}
+{#						#}
+{#						<form id="contact-form" method="post">#}
+{#						    <fieldset>#}
+{#						        <label><input name="email" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" /></label>#}
+{#						        <label><input name="subject" value="Subject" onBlur="if(this.value=='') this.value='Subject'" onFocus="if(this.value =='Subject' ) this.value=''" /></label>#}
+{#						        <textarea onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''">Message</textarea>#}
+{#						        <div class="buttons">#}
+{#						            <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>#}
+{#						            <a href="#" onClick="document.getElementById('contact-form').submit()">Send</a>#}
+{#						        </div>											#}
+{#						    </fieldset>           #}
+{#						</form>#}
+{#					</section>#}
 				</div>
 			</div>
 			<div id="sidebar" class="col-1-3">
@@ -45,7 +45,7 @@
 					<div class="box">
 						<div class="heading"><h2>About us</h2></div>
 						<div class="content">
-							<a href="http://sc.chinaz.com" target="_blank"><img src="images/chinaz.jpg" style="border: 0px;"/></a>
+							<a href="http://sc.chinaz.com" target="_blank"><img src="{% static 'images/zerotheme.jpg'%}" style="border: 0px;"/></a>
 							<p>Free Html5 Templates created by <a href="http://sc.chinaz.com">chinaz</a>. You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files.</p>
 						</div>
 					</div>
@@ -86,6 +86,40 @@
 			</div>
 		</div>
 	</div>
+   <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li >
+                <a href="{% url "blog" %}?page={{ page_obj.previous_page_number }}" class="paginator-previous">上一页</a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="javascript:;" class="paginator-previous">上一页</a>
+            </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+                <li class="active">
+                    <a href="javascript:;">{{ num }}</a>
+                </li>
+            {% else %}
+                <li class="paginator-page">
+                    <a href="{% url "blog" %}?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li>
+                <a href="{% url "blog" %}?page={{ page_obj.next_page_number }}" class="paginator-next">下一页</a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="javascript:;" class="paginator-next">下一页</a>
+            </li>
+        {% endif %}
+    </ul>
 </section>
+
 <!--------------Footer--------------->
 {% endblock %}

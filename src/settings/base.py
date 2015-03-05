@@ -86,6 +86,8 @@ STATIC_ROOT = ''
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '../', 'media').replace('\\', '/')
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), '../../', 'static').replace('\\', '/'),)
+
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates').replace('\\', '/'),
 )

@@ -15,9 +15,11 @@ from .models import Article
 class Index(ListView):
     queryset = Article.objects.filter().order_by('-publish_time')[:3]
     context_object_name = 'article_obj'
+    template_name = 'index.html'
 
 
-class Blog(View):
-
-    def get(self, request):
-        return render_to_response('blog.html')
+class Blog(ListView):
+    model = Article
+    paginate_by = 5
+    context_object_name = 'article_obj'
+    template_name = 'blog.html'
