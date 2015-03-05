@@ -7,14 +7,14 @@ __author__ = 'chengbin.wang'
 
 
 from django.shortcuts import render, render_to_response
-# Create your views here.
-from django.views.generic import View
+from django.views.generic import View, ListView
+
+from .models import Article
 
 
-class Index(View):
-
-    def get(self, request):
-        return render_to_response('index.html')
+class Index(ListView):
+    queryset = Article.objects.filter().order_by('-publish_time')[:3]
+    context_object_name = 'article_obj'
 
 
 class Blog(View):

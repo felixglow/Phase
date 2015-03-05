@@ -9,41 +9,19 @@
 			<div id="main-content" class="col-2-3">
 				<div class="wrap-col">
 					<article>
+                        {% for obj in article_obj %}
 						<div class="heading">
-							<h2><a href="#">Sed accumsan libero quis mi commodo et suscipit</a></h2>
+							<h2><a href="#">{{ obj.name }}</a></h2>
 						</div>
 						<div class="content">
-							<img src="{% static 'images/img1.jpg'%}" width="250px" height="100px"/>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
+							<img src="{{ obj.image.url }}" width="250px" height="100px"/>
+							<p>{{ obj.content }}</p>
 		
 						</div>
 						<div class="info">
 							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
 						</div>
-					</article>
-					<article>
-						<div class="heading">
-							<h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
-						</div>
-						<div class="content">
-							<img src="{% static 'images/img2.jpg'%}" width="250px" height="100px"/>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
-						</div>
-						<div class="info">
-							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
-						</div>
-					</article>
-					<article>
-						<div class="heading">
-							<h2><a href="#">Morbi rutrum vulputate est sed faucibus</a></h2>
-						</div>
-						<div class="content">
-							<img src="{% static 'images/img3.jpg'%}" width="250px" height="100px"/>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
-						</div>
-						<div class="info">
-							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
-						</div>
+                        {% endfor %}
 					</article>
 				</div>
 			</div>
