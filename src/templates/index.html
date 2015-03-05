@@ -1,10 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-hello
-</body>
-</html>
+﻿{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!--------------Content--------------->
+<section id="content">
+	<div class="wrap-content">
+		<div class="row block">
+			<div id="main-content" class="col-2-3">
+				<div class="wrap-col">
+					<article>
+						<div class="heading">
+							<h2><a href="#">Sed accumsan libero quis mi commodo et suscipit</a></h2>
+						</div>
+						<div class="content">
+							<img src="{% static 'images/img1.jpg'%}" width="250px" height="100px"/>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
+		
+						</div>
+						<div class="info">
+							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
+						</div>
+					</article>
+					<article>
+						<div class="heading">
+							<h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
+						</div>
+						<div class="content">
+							<img src="{% static 'images/img2.jpg'%}" width="250px" height="100px"/>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
+						</div>
+						<div class="info">
+							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
+						</div>
+					</article>
+					<article>
+						<div class="heading">
+							<h2><a href="#">Morbi rutrum vulputate est sed faucibus</a></h2>
+						</div>
+						<div class="content">
+							<img src="{% static 'images/img3.jpg'%}" width="250px" height="100px"/>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra convallis auctor. Sed accumsan libero quis mi commodo et suscipit enim lacinia. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum. Morbi rutrum vulputate est sed faucibus. Nulla sed nisl mauris, id tristique tortor. Sed iaculis dapibus urna nec dictum [...]</p>
+						</div>
+						<div class="info">
+							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
+						</div>
+					</article>
+				</div>
+			</div>
+			<div id="sidebar" class="col-1-3">
+				<div class="wrap-col">
+					<div class="box">
+						<div class="heading"><h2>About us</h2></div>
+						<div class="content">
+							<img src="{% static 'images/zerotheme.jpg'%}" style="border: 0px;"/>
+							<p>Html5 Templates created by chinaz. You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files.</p>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>Categories</h2></div>
+						<div class="content">
+							<ul>
+								<li><a href="http://sc.chinaz.com/">Free Html5 Templates</a></li>
+								<li><a href="http://sc.chinaz.com/">Free Responsive Themes</a></li>
+								<li><a href="http://sc.chinaz.com/">Free Html5 and Css3 Themes</a></li>
+								<li><a href="http://sc.chinaz.com/">Free Responsive Html5 and Css3 Themes</a></li>
+								<li><a href="http://sc.chinaz.com/">Free Basic Responsive Html5 Css3 Layouts</a></li>
+								<li><a href="http://sc.chinaz.com/">Premium Responsive Html5 Css3 Templates</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="box">
+						<div class="heading"><h2>Popular Post</h2></div>
+						<div class="content">
+							<div class="post">
+								<img src="{% static 'images/img4.jpg'%}" width="50px"/>
+								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
+								<p>November 11 ,2012</p>
+							</div>
+							<div class="post">
+								<img src="{% static 'images/img5.jpg'%}" width="50px"/>
+								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
+								<p>November 11 ,2012</p>
+							</div>
+							<div class="post">
+								<img src="{% static 'images/img1.jpg'%}" width="50px"/>
+								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
+								<p>November 11 ,2012</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--------------Footer--------------->
+{% endblock %}

@@ -9,7 +9,7 @@ __author__ = 'chengbin.wang'
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
-from views import Index
+from views import Index, Blog
 
 
 urlpatterns = patterns('',
@@ -18,4 +18,5 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', Index.as_view(), name="Index"),
+    url(r'^blog/$', Blog.as_view(), name="blog")
 )

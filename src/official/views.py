@@ -15,3 +15,9 @@ class Index(View):
 
     def get(self, request):
         return render_to_response('index.html')
+
+
+class Blog(View):
+
+    def get(self, request):
+        return render_to_response('blog.html')
