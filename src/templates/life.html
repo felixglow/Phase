@@ -1,30 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}<title> 爱折腾 </title>{% endblock %}
+{% block title %}<title> 慢生活 </title>{% endblock %}
 {% block script %}
 <link href="{% static 'css/base.css' %}" rel="stylesheet">
 <link href="{% static 'css/style.css' %}" rel="stylesheet">
 <link href="{% static 'css/media.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block blog %}topnav_current{% endblock %}
+{% block life %}topnav_current{% endblock %}
 
 {% block article %}
   <article>
-    <h2 class="about_h">您现在的位置是：<a href="{% url 'index' %}">首页</a>> 爱折腾 </h2>
+    <h2 class="about_h">您现在的位置是：<a href="{% url 'index' %}">首页</a>> 慢生活 </h2>
     <div class="bloglist">
       {% for obj in articles %}
       <div class="newblog">
         <ul class="blogcontent">
-          <h3><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
+          <h3><a href="{% url 'life_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
           <div class="autor">
               <span>作者：{{ obj.author }}  </span>
-              <span>分类: {% for tag in obj.tags.all %}[<a href="/">{{ tag.name }}</a>] {% endfor %}</span>
               <span>浏览（{{ obj.click_count }}）</span>
               <span>评论（{{ obj.comment_count }}）</span>
           </div>
-          <p>{{ obj.content|safe|truncatewords_html:8}}<a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">全文</a></p>
+          <p>{{ obj.content|safe|truncatewords_html:8}}<a href="{% url 'life_detail' %}?id={{ obj.id }}" class="readmore">全文</a></p>
         </ul>
         <figure><img src="{{ obj.image.url }}" ></figure>
         <div class="dateview">2014-04-08</div>
@@ -36,14 +35,6 @@
 {% endblock %}
 
 {% block aboutme %}
-{% endblock %}
-
-{% block rnav %}
-<div class="rnav">
-    {% for obj in tags %}
-        <li class="{% cycle 'rnav1' 'rnav2' 'rnav3' 'rnav4' %}"><a href="{% url 'tag_query' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
-    {% endfor %}
-</div>
 {% endblock %}
 
 {% block click_news %}
@@ -64,15 +55,6 @@
         {% endif %}
          ">{{ forloop.counter }}</span><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
     {% endfor %}
-  </ul>
-
-  <h2>
-    <p>栏目推荐</p>
-  </h2>
-  <ul>
-      {% for obj in recommends %}
-        <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
-      {% endfor %}
   </ul>
 
   <h2>
@@ -120,11 +102,5 @@
       <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
     </dl>
   </ul>
-  <h2>
-    <p>最近访客</p>
-    <ul>
-      <img src="../../static/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
-    </ul>
-  </h2>
 </div>
 {% endblock %}

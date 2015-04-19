@@ -13,3 +13,4 @@
 src/settings/__init__.py
 src/settings/local.py
 src/media/
+*.sqlite3

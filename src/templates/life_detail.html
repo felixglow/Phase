@@ -1,0 +1,21 @@
+{% extends 'life.html' %}
+{% load static %}
+
+{% block life %}topnav_current{% endblock %}
+
+{% block article %}
+  <article>
+    <h2 class="about_h">您现在的位置是：<a href="/">首页</a>><a href="{% url 'life_list' %}">慢生活</a>> 详情</h2>
+    <div class="index_about">
+      <h2 class="c_titile">{{ article.name }}</h2>
+      <p class="box_c"><span class="d_time">发布时间：{{ article.publish_time|date:'Y-n-d'}}</span><span>编辑：{{ article.author }}</span><span>浏览（{{ article.click_count }}）</span><span>评论览（{{ article.comment_count }}）</span></p>
+      <ul class="infos">
+        {{ article.content|safe }}
+      </ul>
+      <div class="nextinfo">
+        <p>上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a></p>
+        <p>下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a></p>
+      </div>
+    </div>
+  </article>
+{% endblock %}

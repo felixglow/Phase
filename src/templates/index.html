@@ -1,76 +1,114 @@
-﻿{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-<!--------------Content--------------->
-<section id="content">
-	<div class="wrap-content">
-		<div class="row block">
-			<div id="main-content" class="col-2-3">
-				<div class="wrap-col">
-					<article>
-                        {% for obj in article_obj %}
-						<div class="heading">
-							<h2><a href="#">{{ obj.name }}</a></h2>
-						</div>
-						<div class="content">
-							<img src="{{ obj.image.url }}" width="250px" height="100px"/>
-							<p>{{ obj.content|safe}}</p>
-		
-						</div>
-						<div class="info">
-							<p>By Admin on December 01, 2012 - <a href="#">01 Commnets</a></p>
-						</div>
-                        {% endfor %}
-					</article>
-				</div>
-			</div>
-			<div id="sidebar" class="col-1-3">
-				<div class="wrap-col">
-					<div class="box">
-						<div class="heading"><h2>About us</h2></div>
-						<div class="content">
-							<img src="{% static 'images/zerotheme.jpg'%}" style="border: 0px;"/>
-							<p>Html5 Templates created by chinaz. You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files.</p>
-						</div>
-					</div>
-					<div class="box">
-						<div class="heading"><h2>Categories</h2></div>
-						<div class="content">
-							<ul>
-								<li><a href="http://sc.chinaz.com/">Free Html5 Templates</a></li>
-								<li><a href="http://sc.chinaz.com/">Free Responsive Themes</a></li>
-								<li><a href="http://sc.chinaz.com/">Free Html5 and Css3 Themes</a></li>
-								<li><a href="http://sc.chinaz.com/">Free Responsive Html5 and Css3 Themes</a></li>
-								<li><a href="http://sc.chinaz.com/">Free Basic Responsive Html5 Css3 Layouts</a></li>
-								<li><a href="http://sc.chinaz.com/">Premium Responsive Html5 Css3 Templates</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="box">
-						<div class="heading"><h2>Popular Post</h2></div>
-						<div class="content">
-							<div class="post">
-								<img src="{% static 'images/img4.jpg'%}" width="50px"/>
-								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
-								<p>November 11 ,2012</p>
-							</div>
-							<div class="post">
-								<img src="{% static 'images/img5.jpg'%}" width="50px"/>
-								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
-								<p>November 11 ,2012</p>
-							</div>
-							<div class="post">
-								<img src="{% static 'images/img1.jpg'%}" width="50px"/>
-								<h4><a href="#">Lorem ipsum dolor sit</a></h4>
-								<p>November 11 ,2012</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!--------------Footer--------------->
+{% block title %}
+    <title> 首页 </title>
+{% endblock %}
+
+{% block script %}
+<link href="{% static 'css/base.css' %}" rel="stylesheet">
+<link href="{% static 'css/index.css' %}" rel="stylesheet">
+<link href="{% static 'css/media.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block index %}topnav_current{% endblock %}
+
+{% block article %}
+    <article>
+    <div class="banner">
+      <ul class="texts">
+        <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
+        <p>最好的生活是用心甘情愿的态度，过随遇而安的生活。</p>
+      </ul>
+    </div>
+
+    <div class="bloglist">
+      <h2>
+        <p><span>最新</span>文章</p>
+      </h2>
+
+      {% for obj in articles %}
+      <div class="blogs">
+          <h3><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
+          <figure><img src="{{ obj.image.url }}"></figure>
+          <ul class="content">
+              <p>{{ obj.content|safe|truncatewords_html:15}}</p>
+              <a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">阅读全文&gt;&gt;</a>
+          </ul>
+          <p class="autor"><span>作者：{{ obj.author }}</span>
+              {% if obj.tags.all %}
+              <span>分类:
+                  {% for s in obj.tags.all %}【 <a href="{% url 'tag_query' %}?id={{ s.id }}">{{ s.name }}</a> 】{% endfor %}
+              </span>
+              {% else %}
+              {% endif %}
+              <span>浏览（{{ obj.click_count }}）</span>
+                <span>评论（{{ obj.comment_count }}）</span>
+            </p>
+            <div class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</div>
+      </div>
+      {% endfor %}
+
+    </div>
+    </article>
+{% endblock %}
+
+{% block about_c %}
+    <div class="about_c">
+      <p>网名：Felix </p>
+      <p>职业：程序猿 服务端开发 </p>
+      <p>城市：上海 松江区</p>
+      <p>邮箱：wangcb112@sina.com</p>
+    </div>
+{% endblock %}
+
+{% block share %}
+    <div class="bdsharebuttonbox">
+        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+        <a href="#" class="bds_more" data-cmd="more"></a>
+    </div>
+{% endblock %}
+
+{% block news %}
+    <div class="tj_news">
+      <h2>
+        <p class="tj_t1">最新文章</p>
+      </h2>
+      <ul>
+        {% for obj in articles %}
+            {% if obj.is_life %}
+            <li><a href="">{{ obj.name }}</a></li>
+            {% else %}
+            <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+      <h2>
+        <p class="tj_t2">推荐文章</p>
+      </h2>
+      <ul>
+        {% for obj in recommends %}
+            {% if obj.is_life %}
+            <li><a href="">{{ obj.name }}</a></li>
+            {% else %}
+            <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+{% endblock %}
+
+{% block links %}
+    <div class="links">
+      <h2>
+        <p>友情链接</p>
+      </h2>
+      <ul>
+        <li><a href="http://tongqi.me/" target="_blank">童奇个人博客</a></li>
+      </ul>
+    </div>
 {% endblock %}
