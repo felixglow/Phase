@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load duoshuo_tags %}
+{% duoshuo_comments %}
 
 {% block title %}<title> 爱折腾 </title>{% endblock %}
 {% block script %}
@@ -19,19 +21,52 @@
         <ul class="blogcontent">
           <h3><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
           <div class="autor">
-              <span>作者：{{ obj.author }}  </span>
-              <span>分类: {% for tag in obj.tags.all %}[<a href="/">{{ tag.name }}</a>] {% endfor %}</span>
+              <span>作者：{{ obj.author }}   </span>
+              <span>分类: {% for tag in obj.tags.all %}[<a href="{% url 'tag_query' %}?id={{ tag.id }}">{{ tag.name }}</a>]   {% endfor %}</span>
               <span>浏览（{{ obj.click_count }}）</span>
-              <span>评论（{{ obj.comment_count }}）</span>
           </div>
-          <p>{{ obj.content|safe|truncatewords_html:8}}<a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">全文</a></p>
+          {{ obj.content|safe|truncatewords_html:8}}<a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">全文</a>
         </ul>
         <figure><img src="{{ obj.image.url }}" ></figure>
-        <div class="dateview">2014-04-08</div>
+        <div class="dateview">{{ obj.publish_time|date:'Y-n-d'}}</div>
       </div>
        {% endfor %}
     </div>
-    <div class="page"><a title="Total record"><b>113</b></a><b>1</b><a href="/">2</a><a href="/">3</a><a href="/">4</a><a href="/">5</a><a href="/">&gt;</a><a href="/">&gt;&gt;</a></div>
+      <div class="btn">
+             <ul class="pagination">
+                 {% if page_obj.has_previous %}
+                 <li >
+                     <a href="{% url 'blog_list' %}?page={{ page_obj.previous_page_number }}" class="paginator-previous"><<</a>
+                 </li>
+                 {% else %}
+                 <li class="disabled">
+                     <a href="javascript:;" class="paginator-previous"><<</a>
+                 </li>
+                 {% endif %}
+
+                 {% for num in page_obj.paginator.page_range %}
+                 {% if num == page_obj.number %}
+                 <li class="active">
+                     <a href="javascript:;">{{ num }}</a>
+                 </li>
+                 {% else %}
+                 <li class="paginator-page">
+                     <a href="{% url 'blog_list' %}?page={{ num }}">{{ num }}</a>
+                 </li>
+                 {% endif %}
+                 {% endfor %}
+
+                 {% if page_obj.has_next %}
+                 <li>
+                     <a href="{% url 'blog_list' %}?page={{ page_obj.next_page_number }}" class="paginator-next">>></a>
+                 </li>
+                 {% else %}
+                 <li class="disabled">
+                     <a href="javascript:;" class="paginator-next">>></a>
+                 </li>
+                 {% endif %}
+             </ul>
+         </div>
   </article>
 {% endblock %}
 
@@ -53,7 +88,7 @@
   </h2>
   <ul class="ph_n">
     {% for obj in tops %}
-        <li><span class="
+        <li class="ph_li"><span class="
         {% if forloop.counter == 1 %}
             num1
         {% elif forloop.counter == 2 %}
@@ -71,60 +106,34 @@
   </h2>
   <ul>
       {% for obj in recommends %}
-        <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
+        <li class="ph_li"><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
       {% endfor %}
   </ul>
 
   <h2>
     <p>最新评论</p>
   </h2>
-  <ul class="pl_n">
-    <dl>
-      <dt><img src="../../static/images/s8.jpg"> </dt>
-      <dt> </dt>
-      <dd>DanceSmile
-        <time>49分钟前</time>
-      </dd>
-      <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
-    </dl>
-    <dl>
-      <dt><img src="../../static/images/s7.jpg"> </dt>
-      <dt> </dt>
-      <dd>yisa
-        <time>2小时前</time>
-      </dd>
-      <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
-    </dl>
-    <dl>
-      <dt><img src="../../static/images/s6.jpg"> </dt>
-      <dt> </dt>
-      <dd>小林博客
-        <time>8月7日</time>
-      </dd>
-      <dd><a href="/">博客色彩丰富，很是好看</a></dd>
-    </dl>
-    <dl>
-      <dt><img src="../../static/images/003.jpg"> </dt>
-      <dt> </dt>
-      <dd>DanceSmile
-        <time>49分钟前</time>
-      </dd>
-      <dd><a href="/">文章非常详细，我很喜欢.前端的工程师很少，我记得几年前yahoo花高薪招聘前端也招不到</a></dd>
-    </dl>
-    <dl>
-      <dt><img src="../../static/images/002.jpg"> </dt>
-      <dt> </dt>
-      <dd>yisa
-        <time>2小时前</time>
-      </dd>
-      <dd><a href="/">我手机里面也有这样一个号码存在</a></dd>
-    </dl>
-  </ul>
+
+    <!-- 多说最新评论 start -->
+    <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="0" data-show-admin="1" data-excerpt-length="70"></div>
+    <!-- 多说最新评论 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"felixbin"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+
   <h2>
     <p>最近访客</p>
-    <ul>
-      <img src="../../static/images/vis.jpg"><!-- 直接使用“多说”插件的调用代码 -->
-    </ul>
+      <ul class="ds-recent-visitors"></ul>
   </h2>
 </div>
 {% endblock %}

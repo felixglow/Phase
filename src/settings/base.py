@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'DjangoUeditor',
     'official',
+    'duoshuo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,3 +93,7 @@ STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), '../../', 'static').
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates').replace('\\', '/'),
 )
+
+DUOSHUO_SECRET = '9e6a2a4677c5645df1431b070c6ccaf8'
+
+DUOSHUO_SHORT_NAME = 'felixbin'

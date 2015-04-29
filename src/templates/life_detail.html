@@ -1,5 +1,6 @@
 {% extends 'life.html' %}
 {% load static %}
+{% load duoshuo_tags %}
 
 {% block life %}topnav_current{% endblock %}
 
@@ -9,13 +10,28 @@
     <div class="index_about">
       <h2 class="c_titile">{{ article.name }}</h2>
       <p class="box_c"><span class="d_time">发布时间：{{ article.publish_time|date:'Y-n-d'}}</span><span>编辑：{{ article.author }}</span><span>浏览（{{ article.click_count }}）</span><span>评论览（{{ article.comment_count }}）</span></p>
-      <ul class="infos">
+      <ul class="infos_detail">
         {{ article.content|safe }}
       </ul>
       <div class="nextinfo">
-        <p>上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a></p>
-        <p>下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a></p>
+        <p>上一篇：
+        {% if before_art %}
+            <a href="{% url 'life_detail' %}?id={{ before_art.id }}">{{ before_art.name }}</a>
+        {% else %}
+            没有上一篇
+        {% endif %}
+        </p>
+        <p>下一篇：
+        {% if next_art %}
+            <a href="{% url 'life_detail' %}?id={{ next_art.id }}">{{ next_art.name }}</a>
+        {% else %}
+            没有上一篇
+        {% endif %}
+        </p>
       </div>
+    <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="{{ article.id }}" data-title="{{ article.name }}"></div>
+    <!-- 多说评论框 end -->
     </div>
   </article>
 {% endblock %}
