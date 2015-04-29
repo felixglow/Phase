@@ -18,6 +18,16 @@
 <!--[if lt IE 9]>
 <script src="{% static 'js/modernizr.js' %}"></script>
 <![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?849a1d83c14de14feb3eaa504c0bd0eb";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 </head>
 <body>
 <div class="ibody">
@@ -41,7 +51,7 @@
 
   <aside>
     {% block aboutme %}
-    <div class="avatar"><a href="{% url 'about' %}"><span>关于Felix</span></a></div>
+    <div class="avatar"><a href="{% url 'about' %}"><span>关于 Felix</span></a></div>
     <div class="topspaceinfo">
       <h1>&nbsp;&nbsp;&nbsp;&nbsp;和这个世界交手这许多年</h1>
       <p>你是否光彩依旧，兴致盎然....</p>
