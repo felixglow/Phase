@@ -54,12 +54,16 @@ class BlogList(ListView):
     爱折腾列表
     """
 
+    page_size = 6
+
     def get(self, request, *args, **kwargs):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
         tags = Tag.objects.filter(count__gt=0, is_active=True)
         tops = articles.order_by('-click_count')[:8]
         recommends = articles.filter(is_recommend=True)[:8]
-        return render_to_response('blog.html', {'articles': articles, 'tags': tags, 'tops': tops, 'recommends': recommends})
+
+        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        return render_to_response('blog.html', {'articles': queryset, 'tags': tags, 'tops': tops, 'recommends': recommends, 'page_obj': page_obj})
 
 
 class BlogDetail(TemplateView):
@@ -71,9 +75,17 @@ class BlogDetail(TemplateView):
 
     def get(self, request, *args, **kwargs):
         article = get_object_or_404(Article, pk=request.GET.get('id', 1))
-        article.click()
+        article.click()  # 增加点击次数
+
+        articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
+        tops = articles.order_by('-click_count')[:8]
+        recommends = articles.filter(is_recommend=True)[:8]
         tags = Tag.objects.filter(count__gt=0, is_active=True)
-        return self.render_to_response({'article': article, 'tags': tags})
+
+        next_art = articles.filter(id__gt=article.id).order_by('id')[:1]
+        before_art = articles.filter(id__lt=article.id).order_by('-id')[:1]
+        return self.render_to_response({'article': article, 'tags': tags, 'tops': tops, 'recommends': recommends,
+                                        'next_art': next_art[0] if next_art else '', 'before_art': before_art[0] if before_art else ''})
 
 
 class TagQuery(ListView):
@@ -94,19 +106,22 @@ class TagQuery(ListView):
 
 class LifeList(ListView):
     """
-    乐生活列表
+    慢生活列表
     """
+
+    page_size = 6
 
     def get(self, request, *args, **kwargs):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:8]
-        recommends = articles.filter(is_recommend=True)[:8]
-        return render_to_response('life.html', {'articles': articles, 'tops': tops, 'recommends': recommends})
+
+        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        return render_to_response('life.html', {'articles': queryset, 'tops': tops, 'page_obj': page_obj})
 
 
 class LifeDetail(TemplateView):
     """
-    乐生活详情
+    慢生活详情
     """
 
     template_name = 'life_detail.html'
@@ -114,7 +129,15 @@ class LifeDetail(TemplateView):
     def get(self, request, *args, **kwargs):
         article = get_object_or_404(Article, pk=request.GET.get('id', 1))
         article.click()
-        return self.render_to_response({'article': article})
+
+        articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
+        tops = articles.order_by('-click_count')[:8]
+
+        next_art = articles.filter(id__gt=article.id).order_by('id')[:1]
+        before_art = articles.filter(id__lt=article.id).order_by('-id')[:1]
+        return self.render_to_response({'article': article, 'tops': tops,
+                                        'next_art': next_art[0] if next_art else '', 'before_art': before_art[0] if before_art else ''})
+
 
 
 
