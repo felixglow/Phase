@@ -94,6 +94,6 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates').replace('\\', '/'),
 )
 
-DUOSHUO_SECRET = '9e6a2a4677c5645df1431b070c6ccaf8'
+DUOSHUO_SECRET = '4499eb5667eb96bdc09fd75f83b2323d'
 
-DUOSHUO_SHORT_NAME = 'felixbin'
+DUOSHUO_SHORT_NAME = 'felixonly'
