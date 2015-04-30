@@ -34,7 +34,7 @@ class Tag(BaseModel):
 
 
 class Article(BaseModel):
-    name = models.CharField(max_length=20, verbose_name=u'标题')
+    name = models.CharField(max_length=50, verbose_name=u'标题')
     tags = models.ManyToManyField(Tag, verbose_name=u'标签', blank=True, null=True)
     author = models.CharField(max_length=15, verbose_name=u'作者')
     image = models.ImageField(verbose_name=u'文章图片', upload_to='article')
