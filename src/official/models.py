@@ -96,9 +96,3 @@ class About(BaseModel):
     class Meta:
         verbose_name = u'关于我'
         verbose_name_plural = u'关于我'
-
-
-
-
-
-

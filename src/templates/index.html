@@ -32,7 +32,7 @@
           <h3><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
           <figure><img src="{{ obj.image.url }}"></figure>
           <ul class="content">
-              <p>{{ obj.content|safe|truncatewords_html:15}}</p>
+              <p>{{ obj.content|safe|truncatewords_html:10}}</p>
               <a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">阅读全文&gt;&gt;</a>
           </ul>
           <p class="autor"><span>作者：{{ obj.author }}</span>
@@ -58,17 +58,6 @@
       <p>职业：程序猿 服务端开发 </p>
       <p>城市：上海 松江区</p>
       <p>邮箱：wangcb112@sina.com</p>
-    </div>
-{% endblock %}
-
-{% block share %}
-    <div class="bdsharebuttonbox">
-        <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-        <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-        <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
-        <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
-        <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-        <a href="#" class="bds_more" data-cmd="more"></a>
     </div>
 {% endblock %}
 
