@@ -93,6 +93,8 @@ class TagQuery(ListView):
     根据标签查询
     """
 
+    page_size = 6
+
     def get(self, request):
         tag = get_object_or_404(Tag, pk=request.GET.get('id', None))
         articles = tag.article_set.filter(is_active=True, is_published=True).order_by('-publish_time')
@@ -101,7 +103,8 @@ class TagQuery(ListView):
         tops = arts.order_by('-click_count')
         recommends = arts.filter(is_recommend=True)
 
-        return render_to_response('blog.html', {'articles': articles, 'tags': tags, 'tops': tops, 'recommends': recommends})
+        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        return render_to_response('blog.html', {'articles': queryset, 'tags': tags, 'tops': tops, 'recommends': recommends, 'page_obj': page_obj})
 
 
 class LifeList(ListView):
