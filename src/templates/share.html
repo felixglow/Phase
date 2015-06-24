@@ -13,7 +13,7 @@
         {% for obj in share %}
             <li class="art-share">
                 <div class="art-avatar"><img src="{{ obj.image.url }}"></div>
-                <span class="art-life-intro">{{ obj.content|safe|truncatewords_html:13 }}</span>
+                <span class="art-life-intro">{{ obj.content|safe}}</span>
                 <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
             </li>
         {% endfor %}
