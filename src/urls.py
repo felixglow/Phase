@@ -9,6 +9,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
 from django.views.generic import TemplateView
+
 admin.autodiscover()
 
 
@@ -17,7 +18,6 @@ urlpatterns = patterns('',
     url(r'^ueditor/', include('DjangoUeditor.urls')),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^blog/$', TemplateView.as_view(template_name='blog.html'))
 )
 
 

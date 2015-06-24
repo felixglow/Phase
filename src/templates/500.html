@@ -1,9 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>404 Page Not Found</title>
-    <script src="jquery-1.11.3.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>500 Server Error</title>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             change(7);
@@ -19,12 +20,12 @@
     </script>
     <style type="text/css">
         body{text-align:center}
-        h1{font-family:"微软雅黑"}
+        h1{font-family: 'Helvetica Neue', Arial, "Hiragino Sans GB", sans-serif;}
     </style>
 </head>
 
 <body>
-<p><img src="500.png" width="1200" height="380" style="border-radius: 5px"/></p>
-<h2><span class="num"></span>秒钟后将带您返回地球...</h2>
+<p><img src="{% static 'images/500.png' %}" width="1200" height="380" style="border-radius: 5px"/></p>
+<h2><span class="num"></span>绉掗挓鍚庡皢甯︽偍杩斿洖鍦扮悆...</h2>
 </body>
 </html>

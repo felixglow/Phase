@@ -194,3 +194,4 @@ class AboutMe(BaseView):
 
         kwargs.update({"about": about[0] if about else ''})
         return super(AboutMe, self).get(request, **kwargs)
+
