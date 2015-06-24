@@ -20,7 +20,7 @@
                 <h3><a href="{% url 'life_detail' obj.id %}">{{ obj.name }}</a></h3>
                 <p class="property"><span>作者： {{ obj.author }}</span> | <span>标签：生活</span> | <span>阅读：（{{ obj.click_count }}）</span></p>
                 <div class="art-avatar"><img src="{{ obj.image.url }}"></div>
-                <a href="{% url 'life_detail' obj.id %}" class="art-life-intro">{{ obj.content|safe|truncatewords_html:13 }}</a>
+                <a href="{% url 'life_detail' obj.id %}" class="art-life-intro">{{ obj.content|safe|truncatewords_html:11 }}</a>
                 <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
             </li>
         {% endfor %}
