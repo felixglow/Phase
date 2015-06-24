@@ -11,8 +11,8 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import Http404
 
 from base.mixins import JsonResponseMixin, LoginRequireMixin, PaginateMixin
-from base.views import BaseView
-from .models import Article, About, Tag
+from base.views import BaseView, ListView
+from .models import Article, About, Tag, Share
 
 
 class Index(BaseView):
@@ -21,42 +21,6 @@ class Index(BaseView):
     """
 
     template_name = 'index.html'
-    NEW_ARTICLE_NUM = 5
-    RECOMMEND_ARTICLE_NUM = 8
-
-    def get(self, request, *args, **kwargs):
-        articles = Article.objects.filter(is_active=True, is_published=True).order_by('-publish_time')
-        new_articles = articles[:self.NEW_ARTICLE_NUM]
-        recommend_articles = articles.filter(is_recommend=True)[:self.RECOMMEND_ARTICLE_NUM]
-
-        kwargs.update({'articles': new_articles, 'recommends': recommend_articles})
-        return super(Index, self).get(request, **kwargs)
-
-
-class AboutMe(BaseView):
-    """
-    关于我
-    """
-
-    template_name = 'about.html'
-
-    def get(self, request, *args, **kwargs):
-        about = About.objects.filter(is_active=True)
-
-        kwargs.update({"about": about[0] if about else ''})
-        return super(AboutMe, self).get(request, **kwargs)
-
-
-class Share(BaseView):
-    """
-    分享
-    """
-
-    template_name = 'share.html'
-
-    def get(self, request, *args, **kwargs):
-
-        return super(Share, self).get(request, **kwargs)
 
 
 class BlogList(BaseView, PaginateMixin):
@@ -64,18 +28,18 @@ class BlogList(BaseView, PaginateMixin):
     爱折腾列表
     """
 
-    page_size = 6
-    TOP_ARTICLE_NUM = 8
-    RECOMMEND_ARTICLE_NUM = 8
+    page_size = 5
+    TOP_ARTICLE_NUM = 5
+    RECOMMEND_ARTICLE_NUM = 5
     template_name = 'blog.html'
 
     def get(self, request, *args, **kwargs):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
-        tags = Tag.objects.filter(count__gt=0, is_active=True)
+        tags = Tag.objects.filter(count__gte=0, is_active=True)
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
         recommends = articles.filter(is_recommend=True)[:self.RECOMMEND_ARTICLE_NUM]
 
-        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        page_obj, queryset = self.paginate_queryset(articles, self.page_size)
         kwargs.update({
             'articles': queryset,
             'tags': tags,
@@ -92,12 +56,12 @@ class BlogDetail(BaseView):
     """
 
     template_name = 'blog_detail.html'
-    TOP_ARTICLE_NUM = 8
-    RECOMMEND_ARTICLE_NUM = 8
+    TOP_ARTICLE_NUM = 5
+    RECOMMEND_ARTICLE_NUM = 5
 
     def get(self, request, *args, **kwargs):
         try:
-            article = Article.objects.get(id=request.GET.get('id'), is_active=True)
+            article = Article.objects.get(id=kwargs.get('id'), is_active=True)
         except (Article.DoesNotExist, ValueError):
             raise Http404()
         article.click()  # 增加点击次数
@@ -105,7 +69,7 @@ class BlogDetail(BaseView):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
         recommends = articles.filter(is_recommend=True)[:self.RECOMMEND_ARTICLE_NUM]
-        tags = Tag.objects.filter(count__gt=0, is_active=True)
+        tags = Tag.objects.filter(count__gte=0, is_active=True)
 
         next_art = articles.filter(id__gt=article.id).order_by('id')[:1]
         before_art = articles.filter(id__lt=article.id).order_by('-id')[:1]
@@ -126,22 +90,24 @@ class TagQuery(BaseView, PaginateMixin):
     根据标签查询
     """
 
-    page_size = 6
+    page_size = 5
+    TOP_ARTICLE_NUM = 5
+    RECOMMEND_ARTICLE_NUM = 5
     template_name = 'blog.html'
 
     def get(self, request, *args, **kwargs):
         try:
-            tag = Tag.objects.get(pk=request.GET.get('id'), is_active=True)
+            tag = Tag.objects.get(pk=kwargs.get('id'), is_active=True)
         except (Tag.DoesNotExist, ValueError):
             raise Http404
 
         articles = tag.article_set.filter(is_active=True, is_published=True).order_by('-publish_time')
-        tags = Tag.objects.filter(count__gt=0, is_active=True)
+        tags = Tag.objects.filter(count__gte=0, is_active=True)
         arts = Article.objects.filter(is_active=True, is_published=True).order_by('-publish_time')
-        tops = arts.order_by('-click_count')
-        recommends = arts.filter(is_recommend=True)
+        tops = arts.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
+        recommends = arts.filter(is_recommend=True)[:self.RECOMMEND_ARTICLE_NUM]
 
-        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        page_obj, queryset = self.paginate_queryset(articles, self.page_size)
         kwargs.update({
             'articles': queryset,
             'tags': tags,
@@ -158,15 +124,15 @@ class LifeList(BaseView, PaginateMixin):
     慢生活列表
     """
 
-    page_size = 6
-    TOP_ARTICLE_NUM = 8
+    page_size = 5
+    TOP_ARTICLE_NUM = 5
     template_name = 'life.html'
 
     def get(self, request, *args, **kwargs):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
 
-        paginator, page_obj, queryset, is_paginated = self.paginate_queryset(articles, self.page_size)
+        page_obj, queryset = self.paginate_queryset(articles, self.page_size)
         kwargs.update({'articles': queryset, 'tops': tops, 'page_obj': page_obj})
 
         return super(LifeList, self).get(request, **kwargs)
@@ -178,10 +144,10 @@ class LifeDetail(BaseView):
     """
 
     template_name = 'life_detail.html'
-    TOP_ARTICLE_NUM = 8
+    TOP_ARTICLE_NUM = 5
 
     def get(self, request, *args, **kwargs):
-        article = get_object_or_404(Article, pk=request.GET.get('id'))
+        article = Article.objects.get(pk=kwargs.get('id'), is_active=True)
         article.click()
 
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
@@ -199,7 +165,32 @@ class LifeDetail(BaseView):
         return super(LifeDetail, self).get(request, **kwargs)
 
 
+class ShareList(BaseView, PaginateMixin):
+    """
+    分享
+    """
+
+    page_size = 5
+    template_name = 'share.html'
+
+    def get(self, request, *args, **kwargs):
+        share = Share.objects.filter(is_active=True).order_by('-publish_time')
+
+        page_obj, queryset = self.paginate_queryset(share, self.page_size)
+        kwargs.update(share=queryset, page_obj=page_obj)
+
+        return super(ShareList, self).get(request, **kwargs)
 
 
+class AboutMe(BaseView):
+    """
+    关于我
+    """
 
+    template_name = 'about.html'
 
+    def get(self, request, *args, **kwargs):
+        about = About.objects.filter(is_active=True)
+
+        kwargs.update({"about": about[0] if about else ''})
+        return super(AboutMe, self).get(request, **kwargs)

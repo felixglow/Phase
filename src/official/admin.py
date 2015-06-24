@@ -7,7 +7,7 @@ __author__ = 'chengbin.wang'
 
 
 from django.contrib import admin
-from .models import Article, Tag, About
+from .models import Article, Tag, About, Share
 from django.utils.html import format_html
 
 
@@ -33,6 +33,11 @@ class AboutAdmin(admin.ModelAdmin, AdminMixin):
     readonly_fields = ('click_count',)
 
 
+class ShareAdmin(admin.ModelAdmin, AdminMixin):
+    list_display = ('name', 'show_image')
+
+
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(About, AboutAdmin)
+admin.site.register(Share, ShareAdmin)

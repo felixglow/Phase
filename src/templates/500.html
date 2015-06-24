@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>404 Page Not Found</title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            change(7);
+        })
+        function change(time){
+                time--;
+                $(".num").text(time);
+                if (time == 0) {
+                    location.href = 'http://felixonly.com';
+                }
+                t = setTimeout('change('+time+')', 1000);
+            }
+    </script>
+    <style type="text/css">
+        body{text-align:center}
+        h1{font-family:"微软雅黑"}
+    </style>
+</head>
+
+<body>
+<p><img src="500.png" width="1200" height="380" style="border-radius: 5px"/></p>
+<h2><span class="num"></span>秒钟后将带您返回地球...</h2>
+</body>
+</html>

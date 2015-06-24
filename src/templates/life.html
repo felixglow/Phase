@@ -1,114 +1,64 @@
-{% extends 'base.html' %}
+{% extends 'blog.html' %}
 {% load static %}
 
-{% block title %}<title> 慢生活 </title>{% endblock %}
-{% block script %}
-<link href="{% static 'css/base.css' %}" rel="stylesheet">
-<link href="{% static 'css/style.css' %}" rel="stylesheet">
-<link href="{% static 'css/media.css' %}" rel="stylesheet">
+{% block life %}
+    class="active"
+{% endblock %}
+{% block blog %}
 {% endblock %}
 
-{% block life %}topnav_current{% endblock %}
+{% block category %}
+    <div class="avatar">
+    </div>
+{% endblock %}
 
 {% block article %}
-  <article>
-    <h2 class="about_h">您现在的位置是：<a href="{% url 'index' %}">首页</a>> 慢生活 </h2>
-    <div class="bloglist">
-      {% for obj in articles %}
-      <div class="newblog">
-        <ul class="blogcontent">
-          <h3><a href="{% url 'life_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
-          <div class="autor">
-              <span>作者：{{ obj.author }} </span>
-              <span>浏览（{{ obj.click_count }}） </span>
-          </div>
-          <p>{{ obj.content|safe|truncatewords_html:8}}<a href="{% url 'life_detail' %}?id={{ obj.id }}" class="readmore">全文</a></p>
+<div class="article">
+    <ul class="art-ul">
+        {% for obj in articles %}
+            <li>
+                <h3><a href="{% url 'life_detail' obj.id %}">{{ obj.name }}</a></h3>
+                <p class="property"><span>作者： {{ obj.author }}</span> | <span>标签：生活</span> | <span>阅读：（{{ obj.click_count }}）</span></p>
+                <div class="art-avatar"><img src="{{ obj.image.url }}"></div>
+                <a href="{% url 'life_detail' obj.id %}" class="art-life-intro">{{ obj.content|safe|truncatewords_html:13 }}</a>
+                <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="btn">
+        <ul class="pagination">
+            <li>
+                <a class="paginator-previous" href="
+                    {% if page_obj.has_previous %}
+                        {% url 'life_page_list' page_obj.previous_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                "><<</a>
+            </li>
+            {% for obj in page_obj.range_list %}
+                <li>
+                {% if obj == page_obj.number %}
+                    <a href="javascript:;" class="active">
+                {% else %}
+                    <a href="{% url 'life_page_list' obj %}">
+                {% endif %}
+                {{ obj }}</a></li>
+            {% endfor %}
+            <li>
+                <a href="
+                    {% if page_obj.has_next %}
+                        {% url 'life_page_list' page_obj.next_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                ">>></a>
+            </li>
         </ul>
-        <figure><img src="{{ obj.image.url }}" ></figure>
-        <div class="dateview">2014-04-08</div>
-      </div>
-       {% endfor %}
     </div>
-      <div class="btn">
-         <ul class="pagination">
-             {% if page_obj.has_previous %}
-             <li >
-                 <a href="{% url 'blog_list' %}?page={{ page_obj.previous_page_number }}" class="paginator-previous"><<</a>
-             </li>
-             {% else %}
-             <li class="disabled">
-                 <a href="javascript:;" class="paginator-previous"><<</a>
-             </li>
-             {% endif %}
-
-             {% for num in page_obj.paginator.page_range %}
-             {% if num == page_obj.number %}
-             <li class="active">
-                 <a href="javascript:;">{{ num }}</a>
-             </li>
-             {% else %}
-             <li class="paginator-page">
-                 <a href="{% url 'blog_list' %}?page={{ num }}">{{ num }}</a>
-             </li>
-             {% endif %}
-             {% endfor %}
-
-             {% if page_obj.has_next %}
-             <li>
-                 <a href="{% url 'blog_list' %}?page={{ page_obj.next_page_number }}" class="paginator-next">>></a>
-             </li>
-             {% else %}
-             <li class="disabled">
-                 <a href="javascript:;" class="paginator-next">>></a>
-             </li>
-             {% endif %}
-         </ul>
-     </div>
-  </article>
-{% endblock %}
-
-{% block aboutme %}
-{% endblock %}
-
-{% block click_news %}
-<div class="ph_news">
-  <h2>
-    <p>点击排行</p>
-  </h2>
-  <ul class="ph_n">
-    {% for obj in tops %}
-        <li class="ph_li"><span class="
-        {% if forloop.counter == 1 %}
-            num1
-        {% elif forloop.counter == 2 %}
-            num2
-        {% elif forloop.counter == 3 %}
-            num3
-        {% else %}
-        {% endif %}
-         ">{{ forloop.counter }}</span><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
-    {% endfor %}
-  </ul>
-
-  <h2>
-    <p>最新评论</p>
-  </h2>
-    <!-- 多说最新评论 start -->
-    <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="0" data-show-admin="1" data-excerpt-length="70"></div>
-    <!-- 多说最新评论 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"felixonly"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	    })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-
 </div>
+{% endblock %}
+
+{% block rec-article %}
+
 {% endblock %}

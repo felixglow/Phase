@@ -1,42 +1,56 @@
-{% extends 'base.html' %}
+{% extends 'life.html' %}
 {% load static %}
 
-{% block title %}<title> 乐分享 </title>{% endblock %}
-{% block script %}
-<link href="{% static 'css/base.css' %}" rel="stylesheet">
-<link href="{% static 'css/style.css' %}" rel="stylesheet">
-<link href="{% static 'css/media.css' %}" rel="stylesheet">
-<link href="{% static 'css/share.css' %}" rel="stylesheet">
+{% block share %}
+    class="active"
+{% endblock %}
+{% block life %}
 {% endblock %}
 
-{% block happyshare %}topnav_current{% endblock %}
-
 {% block article %}
-  <article>
-    <h2 class="about_h">您现在的位置是：<a href="/">首页</a>> 乐分享</h2>
-    <div class="template">
-      <h3>
-        <p><span>个人博客</span>模板</p>
-        <a href="/" class="more">更多>></a> </h3>
-      <ul>
-        <li><a href="/" target="_blank"><img src="../../static/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      </ul>
-      <h3>
-        <p><span>企业</span>网站模板</p>
-        <a href="/" class="more">更多>></a> </h3>
-      <ul>
-        <li><a href="/" target="_blank"><img src="../../static/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      </ul>
-
+<div class="article">
+    <ul class="art-ul">
+        {% for obj in share %}
+            <li class="art-share">
+                <div class="art-avatar"><img src="{{ obj.image.url }}"></div>
+                <span class="art-life-intro">{{ obj.content|safe|truncatewords_html:13 }}</span>
+                <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="btn">
+        <ul class="pagination">
+            <li>
+                <a class="paginator-previous" href="
+                    {% if page_obj.has_previous %}
+                        {% url 'share_page' page_obj.previous_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                "><<</a>
+            </li>
+            {% for obj in page_obj.range_list %}
+                <li>
+                {% if obj == page_obj.number %}
+                    <a href="javascript:;" class="active">
+                {% else %}
+                    <a href="{% url 'share_page' obj %}">
+                {% endif %}
+                {{ obj }}</a></li>
+            {% endfor %}
+            <li>
+                <a href="
+                    {% if page_obj.has_next %}
+                        {% url 'share_page' page_obj.next_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                ">>></a>
+            </li>
+        </ul>
     </div>
-  </article>
-    {% endblock %}
+</div>
+{% endblock %}
 
-{% block about_c %}
-    <div class="about_c">
-      <p>网名：Felix </p>
-      <p>职业：程序猿 服务端开发 </p>
-      <p>城市：上海 松江区</p>
-      <p>邮箱：wangcb112@sina.com</p>
-    </div>
+{% block top-article %}
 {% endblock %}

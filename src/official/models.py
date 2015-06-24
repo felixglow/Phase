@@ -96,3 +96,21 @@ class About(BaseModel):
     class Meta:
         verbose_name = u'关于我'
         verbose_name_plural = u'关于我'
+
+
+class Share(BaseModel):
+    """
+    乐分享
+    """
+
+    name = models.CharField(max_length=50, verbose_name=u'标题')
+    image = models.ImageField(verbose_name=u'文章图片', upload_to='share')
+    content = UEditorField(verbose_name=u'正文', width=1200, height=900, imagePath='share/')
+    publish_time = models.DateTimeField(verbose_name=u'发布时间')
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = u'乐分享'
+        verbose_name_plural = u'乐分享'

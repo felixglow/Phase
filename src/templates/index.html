@@ -1,104 +1,46 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
 {% load static %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+            $("#gravityButton").click();
+        });
+    </script>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li><a href="{% url 'index' %}" style="color: #fff">Felix Only</a></li>
+        <li><a class="active" href="{% url 'index' %}">首页</a></li>
+        <li><a href="{% url 'blog_list' %}">爱折腾</a></li>
+        <li><a href="{% url 'life_list' %}">慢生活</a></li>
+        <li><a href="{% url 'share' %}">乐分享</a></li>
+    </ul>
+</div>
+        <ul id="gallery">
+        <li class="run"><img src="{% static 'images/run.jpg' %}"></li>
+        <li class="shelton"><img src="{% static 'images/shelton.jpg' %}"></li>
+        <li class="nanjing"><img src="{% static 'images/nanjing.jpg' %}"></li>
+        <li class="cinema"><img src="{% static 'images/cinema.jpg' %}"></li>
+        <li class="church"><img src="{% static 'images/church.jpg' %}"></li>
+{#        <li class="zhuang"><img src="{% static 'images/zhuang.jpg' %}"></li>#}
+        <li class="happiness"><img src="{% static 'images/happiness.jpg' %}"></li>
+		</ul>
 
-{% block title %}
-    <title> 首页 </title>
-{% endblock %}
-
-{% block script %}
-<link href="{% static 'css/base.css' %}" rel="stylesheet">
-<link href="{% static 'css/index.css' %}" rel="stylesheet">
-<link href="{% static 'css/media.css' %}" rel="stylesheet">
-{% endblock %}
-
-{% block index %}topnav_current{% endblock %}
-
-{% block article %}
-    <article>
-    <div class="banner">
-      <ul class="texts">
-        <p>The best life is use of willing attitude, a happy-go-lucky life. </p>
-        <p>最好的生活是用心甘情愿的态度，过随遇而安的生活。</p>
-      </ul>
-    </div>
-
-    <div class="bloglist">
-      <h2>
-        <p><span>最新</span>文章</p>
-      </h2>
-
-      {% for obj in articles %}
-      <div class="blogs">
-          <h3><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></h3>
-          <figure><img src="{{ obj.image.url }}"></figure>
-          <ul class="content">
-              <p>{{ obj.content|safe|truncatewords_html:9}}</p>
-              <a href="{% url 'blog_detail' %}?id={{ obj.id }}" class="readmore">阅读全文&gt;&gt;</a>
-          </ul>
-          <p class="autor"><span>作者：{{ obj.author }}</span>
-              {% if obj.tags.all %}
-              <span>分类:
-                  {% for s in obj.tags.all %}【 <a href="{% url 'tag_query' %}?id={{ s.id }}">{{ s.name }}</a> 】{% endfor %}
-              </span>
-              {% else %}
-              {% endif %}
-              <span>浏览（{{ obj.click_count }}）</span>
-            </p>
-            <div class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</div>
-      </div>
-      {% endfor %}
-
-    </div>
-    </article>
-{% endblock %}
-
-{% block about_c %}
-    <div class="about_c">
-      <p>网名：Felix </p>
-      <p>职业：程序猿 服务端开发 </p>
-      <p>城市：上海 松江区</p>
-      <p>邮箱：wangcb112@sina.com</p>
-    </div>
-{% endblock %}
-
-{% block news %}
-    <div class="tj_news">
-      <h2>
-        <p class="tj_t1">最新文章</p>
-      </h2>
-      <ul>
-        {% for obj in articles %}
-            {% if obj.is_life %}
-            <li><a href="">{{ obj.name }}</a></li>
-            {% else %}
-            <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
-            {% endif %}
-        {% endfor %}
-      </ul>
-      <h2>
-        <p class="tj_t2">推荐文章</p>
-      </h2>
-      <ul>
-        {% for obj in recommends %}
-            {% if obj.is_life %}
-            <li><a href="">{{ obj.name }}</a></li>
-            {% else %}
-            <li><a href="{% url 'blog_detail' %}?id={{ obj.id }}">{{ obj.name }}</a></li>
-            {% endif %}
-        {% endfor %}
-      </ul>
-    </div>
-{% endblock %}
-
-{% block links %}
-    <div class="links">
-      <h2>
-        <p>友情链接</p>
-      </h2>
-      <ul>
-          <li><a href="http://www.dannysite.com/" target="_blank">DannySite</a></li>
-          <li><a href="http://tongqi.me/" target="_blank">TongQi</a></li>
-          <li><a href="http://godseeu.sinaapp.com" target="_blank">God See You</a></li>
-      </ul>
-    </div>
-{% endblock %}
+        <a href="#" id="gravityButton">开始</a>
+        <!-- JavaScript includes -->
+        <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+        <script src="{% static 'js/spectragram.min.js' %}"></script>
+        <script src="{% static 'js/jGravity-min.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

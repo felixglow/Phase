@@ -52,6 +52,16 @@ class PaginateMixin(object):
     paginator_class = Paginator
     page_kwarg = 'page'
 
+    def range_list(self, page):
+        num = page.number
+        total = page.paginator.num_pages
+        if num <= 3:
+            return page.paginator.page_range[:6]
+        elif num > total - 3:
+            return page.paginator.page_range[total-6:total]
+        else:
+            return page.paginator.page_range[num-3:num+3]
+
     def paginate_queryset(self, queryset, page_size):
         """
         Paginate the queryset, if needed.
@@ -70,7 +80,8 @@ class PaginateMixin(object):
                 raise Http404(_("Page is not 'last', nor can it be converted to an int."))
         try:
             page = paginator.page(page_number)
-            return paginator, page, page.object_list, page.has_other_pages()
+            page.range_list = self.range_list(page)
+            return page, page.object_list
         except InvalidPage as e:
             raise Http404(_('Invalid page (%(page_number)s): %(message)s') % {
                 'page_number': page_number,

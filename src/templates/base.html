@@ -1,95 +1,88 @@
 <!DOCTYPE html>
 {% load static %}
-
 <html>
-<head>
-<meta charset="UTF-8" content="text/html; charset=utf-8">
-<link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
-{% block title %}
-{% endblock %}
-
-<meta name="keywords" content="个人博客 程序 web python django" />
-<meta name="description" content="个人博客" />
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-<meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-<meta name="format-detection" content="telephone=no"/>
-<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport"/>
-{% block script %}
-{% endblock %}
-
-<!--[if lt IE 9]>
-<script src="{% static 'js/modernizr.js' %}"></script>
-<![endif]-->
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?849a1d83c14de14feb3eaa504c0bd0eb";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    {% block script %}
+    {% endblock %}
 </head>
 <body>
-<div class="ibody">
-    {% block navigation %}
-      <header>
-        <h1>Felix Only</h1>
-        <h2>业精于勤，荒于嬉；行成于思，毁于随。</h2>
-        <div class="logo"><a href="/"></a></div>
-        <nav>
-            <a id="{% block index %}{% endblock %}" href="{% url 'index' %}">首页</a>
-            <a id="{% block blog %}{% endblock %}" href="{% url 'blog_list' %}">爱折腾</a>
-            <a id="{% block life %}{% endblock %}" href="{% url 'life_list'  %}">慢生活</a>
-            <a id="{% block happyshare %}{% endblock %}" href="{% url 'share' %}">乐分享</a>
-            <a id="{% block about %}{% endblock %}" href="{% url 'about' %}">关于我</a>
-        </nav>
-      </header>
-    {% endblock %}
 
-    {% block article %}
-    {% endblock %}
-
-  <aside>
-    {% block aboutme %}
-    <div class="avatar"><a href="{% url 'about' %}"><span>关于Felix</span></a></div>
-    <div class="topspaceinfo">
-      <h1>&nbsp;&nbsp;&nbsp;&nbsp;和这个世界交手这许多年</h1>
-      <p>你是否光彩依旧，兴致盎然....</p>
-    </div>
-    {% endblock %}
-
-    {% block about_c %}
-    {% endblock %}
-
-    {% block rnav %}
-    {% endblock %}
-
-    {% block share %}
-    {% endblock %}
-
-    {% block news %}
-    {% endblock %}
-
-    {% block links %}
-    {% endblock %}
-
-    {% block click_news %}
-    {% endblock %}
-
-    <div class="copyright">
-      <ul>
-        <p> Design by <a href="/">Felix</a></p>
-        <p><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备15017930号</a></p>
-        </p>
-      </ul>
+<div class="nav">
+    <ul>
+        <li><a href="{% url 'index' %}" style="color: #fff">Felix Only</a></li>
+        <li><a href="{% url 'index' %}">首页</a></li>
+        <li><a {% block blog %}{% endblock %} href="{% url 'blog_list' %}">爱折腾</a></li>
+        <li><a {% block life %}{% endblock %} href="{% url 'life_list' %}">慢生活</a></li>
+        <li><a {% block share %}{% endblock %} href="{% url 'share' %}">乐分享</a></li>
+    </ul>
+</div>
+<div class="content">
+    <div class="left-content">
+        <div class="header">
+            <h1>Felix 的个人博客</h1>
+            <p><span>和这个世界交手这许多年</span>&nbsp&nbsp
+                <span>你是否光彩依旧，兴致盎然...</span></p>
+        </div>
+        {% block article %}
+        {% endblock %}
     </div>
 
-  </aside>
-  <div class="clear"></div>
-  <!-- 清除浮动 -->
+    <div class="sidebar">
+        <div class="sidebar-sub">
+            {% block category %}
+            {% endblock %}
+
+            {% block introduce %}
+            <div class="introduce">
+                <p>小猿一枚 服务端开发</p>
+                <p>联系博主 Felix</p>
+                <p>邮箱： wangcb112@sina.com</p>
+            </div>
+            {% endblock %}
+
+            {% block top-article %}
+            {% endblock %}
+
+            {% block rec-article %}
+            {% endblock %}
+
+            {% block links %}
+            <div class="links">
+                <h2>友情链接</h2>
+                <ul>
+                    <li><a href="javascript:;">DannySite</a></li>
+                    <li><a href="javascript:;">TongQi</a></li>
+                    <li><a href="javascript:;">God See You</a></li>
+                </ul>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+
+    {% block bottom %}
+    <div class="bottom">
+        <div class="bt-left">
+            <p>基于 Django1.7 ubuntu nginx uwsgi 构建</p>
+            <p>服务器采用的 <a href="http://www.aliyun.com/product/ecs/" target="_blank">阿里云</a></p>
+            <p>域名来自 <a href="http://www.net.cn/?utm_campaign=AD1&utm_source=baidu&utm_medium=brand" target="_blank">万网</a></p>
+        </div>
+        <div class="bt-middle">
+            <p>©2015 felixonly.com. All rights reserved. </p>
+            <p>Design by Felix</p>
+            <p><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备15017930号</a></p>
+        </div>
+        <div class="bt-right">
+
+        </div>
+    </div>
+    {% endblock %}
+{% block page %}
+</div>
+<div id="page">
+{% endblock %}
 </div>
 </body>
 </html>
