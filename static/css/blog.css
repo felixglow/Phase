@@ -2,6 +2,19 @@ body {
     background: url("../images/129.png");
 }
 
+.clear{
+    clear: both;
+}
+
+.clearFix:after{
+     clear:both;
+     display:block;
+     visibility:hidden;
+     content:'';
+
+}
+.clearFix{zoom:1;}
+
 .content {
     width: 1000px;
     font-weight: normal;
@@ -208,6 +221,7 @@ body {
 /* 侧边栏 */
 .content .sidebar {
     width: 250px;
+    min-height: 910px;
     float: right;
     background-color: #fff;
     border-radius: 2px 2px 5px 5px;
@@ -271,36 +285,42 @@ body {
 /* end */
 
 /* 底部条 */
-.content .bottom {
+.bottom {
     width: 1000px;
     height: 140px;
-    float: left;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0.1px 0.1px 2px;
-    margin-top: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 10px auto 0 auto;
+    overflow: hidden;
 }
 
-.content .bottom .bt-left,.bt-middle,.bt-right {
+.bottom a {
+    color: #43a6eb;
+}
+
+.bottom .bt-left,.bt-middle,.bt-right {
     width: 300px;
     height: 150px;
     float: left;
 }
 
-.content .bottom .bt-left {
+.bottom .bt-left {
     margin-left: 10px;
 }
 
-.content .bottom .bt-middle {
+.bottom .bt-middle {
     margin-left: 42px;
     text-align: center;
 }
 
-.content .bottom .bt-right {
+.bottom .bt-right {
     margin-left: 42px;
 }
 
-.content .bottom p {
+.bottom p {
     margin-top: 8px;
     line-height: 20px;
     height: 20px;

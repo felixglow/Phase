@@ -25,12 +25,20 @@ function gotoTop(min_height){
 
 
 $(document).ready(function(){
-    //sidebar  left-content
-    var nSide = $(".sidebar").get(0).scrollHeight;
-    var nLeft = $(".left-content").get(0).scrollHeight;
-
-    if(nSide<nLeft){
-        $(".sidebar").css({"height":nLeft+"px"});
+    function flush(){
+        var nLeft = $(".left-content").get(0).scrollHeight;
+        var nSide = $(".sidebar").get(0).scrollHeight;
+        if(nLeft>nSide){
+            $(".sidebar").css({"height":nLeft+"px"});
+        }
     }
+    flush();
+    var timer = setInterval(function(){
+        flush();
+    },800);
+
+    setTimeout(function(){
+        clearInterval(timer);
+    },8000)
     gotoTop(200);
 });

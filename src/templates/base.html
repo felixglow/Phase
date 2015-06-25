@@ -21,7 +21,7 @@
         <li><a {% block share %}{% endblock %} href="{% url 'share' %}">乐分享</a></li>
     </ul>
 </div>
-<div class="content">
+<div class="content clearFix">
     <div class="left-content">
         <div class="header">
             <h1>Felix 的个人博客</h1>
@@ -63,28 +63,30 @@
             {% endblock %}
         </div>
     </div>
+</div>
 
-    {% block bottom %}
-    <div class="bottom">
-        <div class="bt-left">
-            <p>基于 Django1.7 ubuntu nginx uwsgi 构建</p>
-            <p>服务器采用的 <a href="http://www.aliyun.com/product/ecs/" target="_blank">阿里云</a></p>
-            <p>域名来自 <a href="http://www.net.cn/?utm_campaign=AD1&utm_source=baidu&utm_medium=brand" target="_blank">万网</a></p>
-        </div>
-        <div class="bt-middle">
-            <p>©2015 felixonly.com. All rights reserved. </p>
-            <p>Design by Felix</p>
-            <p><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备15017930号</a></p>
-        </div>
-        <div class="bt-right">
 
-        </div>
+
+{% block bottom %}
+<div class="bottom">
+    <div class="bt-left">
+        <p>基于 Django1.7 ubuntu nginx uwsgi 构建</p>
+        <p>服务器采用的 <a href="http://www.aliyun.com/product/ecs/" target="_blank">阿里云</a></p>
+        <p>域名来自 <a href="http://www.net.cn/?utm_campaign=AD1&utm_source=baidu&utm_medium=brand" target="_blank">万网</a></p>
     </div>
-    {% endblock %}
-{% block page %}
+    <div class="bt-middle">
+        <p>©2015 felixonly.com. All rights reserved. </p>
+        <p>Design by Felix</p>
+        <p><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备15017930号</a></p>
+    </div>
+    <div class="bt-right">
+
+    </div>
 </div>
-<div id="page">
 {% endblock %}
+{% block page %}
+<div id="page">
 </div>
+{% endblock %}
 </body>
 </html>
