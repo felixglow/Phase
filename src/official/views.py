@@ -13,6 +13,7 @@ from django.http import Http404
 from base.mixins import JsonResponseMixin, LoginRequireMixin, PaginateMixin
 from base.views import BaseView, ListView
 from .models import Article, About, Tag, Share
+from base.utils import check_visit
 
 
 class Index(BaseView):
@@ -64,7 +65,9 @@ class BlogDetail(BaseView):
             article = Article.objects.get(id=kwargs.get('id'), is_active=True)
         except (Article.DoesNotExist, ValueError):
             raise Http404()
-        article.click()  # 增加点击次数
+
+        if check_visit(request):
+            article.click()  # 增加点击次数
 
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
@@ -148,7 +151,9 @@ class LifeDetail(BaseView):
 
     def get(self, request, *args, **kwargs):
         article = Article.objects.get(pk=kwargs.get('id'), is_active=True)
-        article.click()
+
+        if check_visit(request):
+            article.click()  # 增加点击次数
 
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
@@ -194,4 +199,3 @@ class AboutMe(BaseView):
 
         kwargs.update({"about": about[0] if about else ''})
         return super(AboutMe, self).get(request, **kwargs)
-
