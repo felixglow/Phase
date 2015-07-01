@@ -11,30 +11,30 @@ from .models import Article, Tag, About, Share
 from django.utils.html import format_html
 
 
-class AdminMixin(object):
+# class AdminMixin(object):
+#
+#     def show_image(self, obj):
+#         html = "<img src={0} width=120 height=80>"
+#         return format_html(html.format(obj.image.url))
+#     show_image.short_description = u'图片'
 
-    def show_image(self, obj):
-        html = "<img src={0} width=120 height=80>"
-        return format_html(html.format(obj.image.url))
-    show_image.short_description = u'图片'
 
-
-class TagAdmin(admin.ModelAdmin, AdminMixin):
+class TagAdmin(admin.ModelAdmin):
     list_display = ('name', 'count')
     readonly_fields = ('count',)
 
 
-class ArticleAdmin(admin.ModelAdmin, AdminMixin):
-    list_display = ('name', 'show_image', 'publish_time')
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('name', 'publish_time')
 
 
-class AboutAdmin(admin.ModelAdmin, AdminMixin):
+class AboutAdmin(admin.ModelAdmin):
     list_display = ('name', 'click_count')
     readonly_fields = ('click_count',)
 
 
-class ShareAdmin(admin.ModelAdmin, AdminMixin):
-    list_display = ('name', 'show_image')
+class ShareAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
 
 admin.site.register(Article, ArticleAdmin)

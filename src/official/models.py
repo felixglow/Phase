@@ -37,7 +37,7 @@ class Article(BaseModel):
     name = models.CharField(max_length=50, verbose_name=u'标题')
     tags = models.ManyToManyField(Tag, verbose_name=u'标签', blank=True, null=True)
     author = models.CharField(max_length=15, verbose_name=u'作者')
-    image = models.ImageField(verbose_name=u'文章图片', upload_to='article')
+    image = models.ImageField(verbose_name=u'文章图片', upload_to='article', blank=True, null=True)
     content = UEditorField(verbose_name=u'正文', width=1200, height=900, imagePath='blogs/')
     is_recommend = models.BooleanField(verbose_name=u'是否推荐', default=False)
     is_published = models.BooleanField(verbose_name=u'是否发布', default=False)

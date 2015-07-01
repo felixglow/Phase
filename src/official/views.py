@@ -16,14 +16,6 @@ from .models import Article, About, Tag, Share
 from base.utils import check_visit
 
 
-class Index(BaseView):
-    """
-    博客首页
-    """
-
-    template_name = 'index.html'
-
-
 class BlogList(BaseView, PaginateMixin):
     """
     爱折腾列表
@@ -49,6 +41,14 @@ class BlogList(BaseView, PaginateMixin):
             'page_obj': page_obj
         })
         return super(BlogList, self).get(request, **kwargs)
+
+
+class Index(BlogList):
+    """
+    博客首页
+    """
+
+    template_name = 'index.html'
 
 
 class BlogDetail(BaseView):

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-{% load static %}
+{% load staticfiles %}
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    {{ form.media }}
     {% block title %}
         <title>首页</title>
     {% endblock %}
@@ -15,7 +16,7 @@
 <div class="nav">
     <ul>
         <li><a href="{% url 'index' %}" style="color: #fff">Felix Only</a></li>
-        <li><a href="{% url 'index' %}">首页</a></li>
+        <li><a {% block index %}{% endblock %} href="{% url 'index' %}">首页</a></li>
         <li><a {% block blog %}{% endblock %} href="{% url 'blog_list' %}">爱折腾</a></li>
         <li><a {% block life %}{% endblock %} href="{% url 'life_list' %}">慢生活</a></li>
         <li><a {% block share %}{% endblock %} href="{% url 'share' %}">乐分享</a></li>
