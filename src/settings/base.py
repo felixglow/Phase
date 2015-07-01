@@ -92,6 +92,7 @@ STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__), '../../', 'static').
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates').replace('\\', '/'),
+    os.path.join(os.path.dirname(__file__), '../', 'templates/ueditor').replace('\\', '/'),
 )
 
 DUOSHUO_SECRET = '4499eb5667eb96bdc09fd75f83b2323d'
