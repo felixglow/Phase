@@ -12,17 +12,16 @@ import datetime
 from django.utils import timezone
 
 
-def check_visit(request):
-    now = timezone.now().date().strftime('%Y-%m-%d')
-    ip = request.META['HTTP_X_FORWARDED_FOR'] if 'HTTP_X_FORWARDED_FOR' in request.META else request.META['REMOTE_ADDR']
+def check_visit(request, id):
+    now = timezone.now().strftime('%Y-%m-%d')
+    # ip = request.META['HTTP_X_FORWARDED_FOR'] if 'HTTP_X_FORWARDED_FOR' in request.META else request.META['REMOTE_ADDR']
 
-    if ip in request.session:
-        last_time = request.session[ip]
-        if last_time == now:
-            return False
-        else:
-            request.session[ip] = now
-            return True
-    else:
-        request.session[ip] = now
+    if str(id) not in request.session:
+        request.session[str(id)] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         return True
+    else:
+        if (timezone.now().replace(tzinfo=None) - datetime.datetime.strptime(request.session[str(id)], '%Y-%m-%d %H:%M:%S')).seconds >= 12*60*60:
+            request.session[str(id)] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
+            request.session.modified = True
+            return True
+        return False

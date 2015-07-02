@@ -61,12 +61,13 @@ class BlogDetail(BaseView):
     RECOMMEND_ARTICLE_NUM = 5
 
     def get(self, request, *args, **kwargs):
+        blog_id = kwargs.get('id')
         try:
-            article = Article.objects.get(id=kwargs.get('id'), is_active=True)
+            article = Article.objects.get(id=blog_id, is_active=True)
         except (Article.DoesNotExist, ValueError):
             raise Http404()
 
-        if check_visit(request):
+        if check_visit(request, blog_id):
             article.click()  # 增加点击次数
 
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=False).order_by('-publish_time')
@@ -150,9 +151,10 @@ class LifeDetail(BaseView):
     TOP_ARTICLE_NUM = 5
 
     def get(self, request, *args, **kwargs):
-        article = Article.objects.get(pk=kwargs.get('id'), is_active=True)
+        blog_id = kwargs.get('id')
+        article = Article.objects.get(pk=blog_id, is_active=True)
 
-        if check_visit(request):
+        if check_visit(request, blog_id):
             article.click()  # 增加点击次数
 
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
