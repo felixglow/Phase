@@ -152,7 +152,10 @@ class LifeDetail(BaseView):
 
     def get(self, request, *args, **kwargs):
         blog_id = kwargs.get('id')
-        article = Article.objects.get(pk=blog_id, is_active=True)
+        try:
+            article = Article.objects.get(id=blog_id, is_active=True)
+        except (Article.DoesNotExist, ValueError):
+            raise Http404()
 
         if check_visit(request, blog_id):
             article.click()  # 增加点击次数
