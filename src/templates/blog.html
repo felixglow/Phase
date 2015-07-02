@@ -27,7 +27,7 @@
                         <a href="{% url 'tag_query' t.id %}">{{ t.name }}</a>
                     {% endfor %}
                 </span> | <span>阅读：（{{ obj.click_count }}）</span></p>
-                <a href="{% url 'blog_detail' obj.id %}" class="art-intro">{{ obj.content|safe|truncatewords_html:11 }}</a>
+                <a href="{% url 'blog_detail' obj.id %}" class="art-intro">{{ obj.content|safe|truncatewords_html:10 }}</a>
                 <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
             </li>
         {% endfor %}

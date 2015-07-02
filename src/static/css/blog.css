@@ -171,6 +171,7 @@ body {
     float:right;
     padding-right:20px;
     padding-bottom:60px;
+    margin-top: 20px;
 }
 
 .content .pagination li {
@@ -447,7 +448,6 @@ body {
     overflow: hidden;
     line-height: 25px;
     font-size: 14px;
-    text-indent: 2em;
     color: #525554;
     padding: 0 18px;
 }
