@@ -63,6 +63,17 @@
 </div>
 {% endblock %}
 
+{% block top-article %}
+<div class="top-article">
+    <h2>最新文章</h2>
+    <ul>
+        {% for obj in tops %}
+            <li><a href="{% url 'life_detail' obj.id %}">{{ obj.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
 {% block rec-article %}
 
 {% endblock %}
