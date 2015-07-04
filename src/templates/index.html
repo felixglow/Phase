@@ -79,7 +79,7 @@
     <h2>点击排行</h2>
     <ul>
         {% for obj in tops %}
-            <li><a href="javascript:;">{{ obj.name }}</a></li>
+            <li><a href="{% url 'blog_detail' obj.id %}">{{ obj.name }}</a></li>
         {% endfor %}
     </ul>
 </div>
@@ -90,7 +90,7 @@
     <h2>推荐文章</h2>
     <ul>
         {% for obj in recommends %}
-        <li><a href="javascript:;">{{ obj.name }}</a></li>
+        <li><a href="{% url 'blog_detail' obj.id %}">{{ obj.name }}</a></li>
         {% endfor %}
     </ul>
 </div>
