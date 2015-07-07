@@ -26,19 +26,19 @@ function gotoTop(min_height){
 
 $(document).ready(function(){
     function flush(){
-        var nLeft = $(".left-content").get(0).scrollHeight;
-        var nSide = $(".sidebar").get(0).scrollHeight;
+        var nLeft = $(".left-content").height();
+        var nSide = $(".sidebar").height();
         if(nLeft>nSide){
             $(".sidebar").css({"height":nLeft+"px"});
         }
     }
-    flush();
     var timer = setInterval(function(){
         flush();
-    },800);
+    },500);
 
     setTimeout(function(){
-        clearInterval(timer);
-    },12000);
+        clearInterval(timer)
+    },10000)
+
     gotoTop(200);
 });
