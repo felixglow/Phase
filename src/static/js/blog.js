@@ -39,6 +39,6 @@ $(document).ready(function(){
 
     setTimeout(function(){
         clearInterval(timer);
-    },8000)
+    },12000);
     gotoTop(200);
 });

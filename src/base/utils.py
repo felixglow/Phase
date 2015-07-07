@@ -20,7 +20,7 @@ def check_visit(request, id):
         request.session[str(id)] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
         return True
     else:
-        if (timezone.now().replace(tzinfo=None) - datetime.datetime.strptime(request.session[str(id)], '%Y-%m-%d %H:%M:%S')).seconds >= 12*60*60:
+        if (timezone.now().replace(tzinfo=None) - datetime.datetime.strptime(request.session[str(id)], '%Y-%m-%d %H:%M:%S')).seconds >= 6*60*60:
             request.session[str(id)] = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
             request.session.modified = True
             return True
