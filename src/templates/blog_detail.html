@@ -1,6 +1,11 @@
 {% extends 'blog.html' %}
 {% load staticfiles %}
 
+{% block title %}
+    <title>{{ article.name }}</title>
+    <meta name="description" content={{ article.name }}>
+{% endblock %}
+
 {% block article %}
     <div class="article">
         <div class="art-location">
