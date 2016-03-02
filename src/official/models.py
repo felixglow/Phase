@@ -42,7 +42,7 @@ class Article(BaseModel):
     is_recommend = models.BooleanField(verbose_name=u'是否推荐', default=False)
     is_published = models.BooleanField(verbose_name=u'是否发布', default=False)
     is_life = models.BooleanField(verbose_name=u'是否生活', default=False)
-    click_count = models.IntegerField(default=0, editable=False, verbose_name=u'点击量')
+    click_count = models.IntegerField(default=0, verbose_name=u'点击量')
     comment_count = models.IntegerField(default=0, editable=False, verbose_name=u'评论数')
     publish_time = models.DateTimeField(verbose_name=u'发布时间')
 

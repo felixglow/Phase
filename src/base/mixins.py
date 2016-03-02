@@ -55,7 +55,7 @@ class PaginateMixin(object):
     def range_list(self, page):
         num = page.number
         total = page.paginator.num_pages
-        if num <= 3:
+        if num <= 5:
             return page.paginator.page_range[:6]
         elif num > total - 3:
             return page.paginator.page_range[total-6:total]
