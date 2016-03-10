@@ -16,7 +16,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'', include("official.urls")),
     url(r'^ueditor/', include('DjangoUeditor.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^management/backend/', include(admin.site.urls)),
 
 )
 

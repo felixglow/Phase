@@ -318,14 +318,16 @@ body {
 
 .bottom .bt-right {
     margin-left: 42px;
+    text-align: center;
 }
 
 .bottom p {
-    margin-top: 8px;
-    line-height: 20px;
+    margin-top: 10px;
+    line-height: 25px;
     height: 20px;
     width: 300px;
 }
+
 /* end */
 
 #page {

@@ -48,9 +48,9 @@
             {% block introduce %}
             <div class="introduce">
                 <p><i><strong>Felix</strong></i> 的个人博客</p>
-                <p>程序猿一枚 服务端开发</p>
+                <p>Python Developer</p>
                 <p>联系博主:  <i><strong>Felix</strong></i></p>
-                <p>邮箱： felixglow@163.com</p>
+                <p>Email: felixglow@163.com</p>
             </div>
             {% endblock %}
 
@@ -79,21 +79,22 @@
 {% block bottom %}
 <div class="bottom">
     <div class="bt-left">
-        <p>基于 Django1.7 ubuntu nginx uwsgi 构建</p>
+        <p>基于 <a href="https://docs.djangoproject.com" target="_blank">Django</a> 搭建</p>
         <p>服务器采用的 <a href="http://www.aliyun.com/product/ecs/" target="_blank">阿里云</a></p>
         <p>域名来自 <a href="http://www.net.cn/?utm_campaign=AD1&utm_source=baidu&utm_medium=brand" target="_blank">万网</a></p>
     </div>
     <div class="bt-middle">
-        <p>©2015 felixonly.com. All rights reserved. </p>
-        <p>Design by Felix</p>
         <p><a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备15017930号</a></p>
+        <p>©2015 felixonly.com. </p>
         <script type="text/javascript">
         var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F849a1d83c14de14feb3eaa504c0bd0eb' type='text/javascript'%3E%3C/script%3E"));
         </script>
     </div>
     <div class="bt-right">
-
+        <p><a href="https://github.com/felixglow" target="_blank">
+            <img src="{% static 'images/github.png' %}" width='20' height='20'> GitHub</a></p>
+        <p>Design by <i><strong>Felix</strong></i></p>
     </div>
 </div>
 {% endblock %}
