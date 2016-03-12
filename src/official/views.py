@@ -6,12 +6,10 @@
 
 __author__ = 'chengbin.wang'
 
-
-from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import Http404
 
 from base.mixins import JsonResponseMixin, LoginRequireMixin, PaginateMixin
-from base.views import BaseView, ListView
+from base.views import BaseView
 from .models import Article, About, Tag, Share
 from base.utils import check_visit
 
@@ -74,9 +72,8 @@ class BlogDetail(BaseView):
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
         recommends = articles.filter(is_recommend=True)[:self.RECOMMEND_ARTICLE_NUM]
         tags = Tag.objects.filter(count__gte=0, is_active=True)
-
-        next_art = articles.filter(id__gt=article.id).order_by('id')[:1]
-        before_art = articles.filter(id__lt=article.id).order_by('-id')[:1]
+        next_art = articles.filter(publish_time__gt=article.publish_time).order_by('publish_time')[:1]
+        before_art = articles.filter(publish_time__lt=article.publish_time).order_by('-publish_time')[:1]
 
         kwargs.update({
             'article': article,
@@ -163,8 +160,8 @@ class LifeDetail(BaseView):
         articles = Article.objects.filter(is_active=True, is_published=True, is_life=True).order_by('-publish_time')
         tops = articles.order_by('-click_count')[:self.TOP_ARTICLE_NUM]
 
-        next_art = articles.filter(id__gt=article.id).order_by('id')[:1]
-        before_art = articles.filter(id__lt=article.id).order_by('-id')[:1]
+        next_art = articles.filter(publish_time__gt=article.publish_time).order_by('publish_time')[:1]
+        before_art = articles.filter(publish_time__lt=article.publish_time).order_by('-publish_time')[:1]
 
         kwargs.update({
             'article': article,
