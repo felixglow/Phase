@@ -261,7 +261,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5;
-    padding: 0 0 5px 20px;
+    padding: 0 0 5px 14px;
     text-shadow: grey 0.1px 0.1px 0.1px;
 }
 
@@ -270,7 +270,7 @@ body {
 }
 
 .sidebar-sub .links {
-    margin-top: 20px;
+    margin-top: 27px;
 }
 
 .sidebar-sub .links li {
@@ -278,16 +278,16 @@ body {
     text-align: center;
     height: 30px;
     line-height: 30px;
-    padding: 0 0;
-    width: 150px;
-    margin-left: 26px;
+    padding: 5px 0 0;
+    width: 112px;
+    margin-left: 48px;
 }
 /* end */
 
 /* 底部条 */
 .bottom {
     width: 1000px;
-    height: 125px;
+    height: 108px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0.1px 0.1px 2px;
@@ -303,12 +303,21 @@ body {
 
 .bottom .bt-left,.bt-middle,.bt-right {
     width: 300px;
-    height: 150px;
+    height: 85px;
     float: left;
+    margin-top: 7px;
 }
 
 .bottom .bt-left {
     margin-left: 10px;
+}
+
+.bottom .bt-left p {
+    margin-left: 12px;
+    margin-top: 10px;
+    line-height: 16px;
+    height: 16px;
+    width: 300px;
 }
 
 .bottom .bt-middle {
@@ -316,16 +325,18 @@ body {
     text-align: center;
 }
 
-.bottom .bt-right {
-    margin-left: 42px;
-    text-align: center;
+.bottom .bt-middle p {
+    margin-top: 10px;
+    line-height: 16px;
+    height: 16px;
+    width: 300px;
 }
 
-.bottom p {
-    margin-top: 10px;
-    line-height: 30px;
-    height: 20px;
-    width: 300px;
+.bottom .bt-right {
+    margin-top: 22px;
+    margin-left: 42px;
+    text-align: center;
+    line-height: 25px;
 }
 
 /* end */
@@ -422,8 +433,7 @@ body {
     margin: 10px auto;
     line-height: 30px;
     border-bottom:  #d7d7d7 1px solid;
-    padding-left: 15px;
-    background: url(../images/location.png) no-repeat;
+    padding-left: 6px;
 }
 
 .article .art-description h3 {
@@ -477,7 +487,7 @@ body {
     height: 160px;
     margin: 16px auto;
     border-radius: 100%;
-    background: url("../images/photos.png") no-repeat;
+    background: url("../images/tx.png") no-repeat;
     background-size: 160px 160px;
 }
 /* end */

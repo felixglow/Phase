@@ -1,3 +1,9 @@
+# -*-coding:utf-8 -*-
+#
+# Created on 2015-01-22, by chengbin.wang
+#
+#
+
 """
 Django settings for phase project.
 
@@ -37,7 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'DjangoUeditor',
-    'official',
+    'apps.blog',
+    'apps.share',
     'duoshuo',
 )
 
@@ -95,8 +102,8 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates/ueditor').replace('\\', '/'),
 )
 
+# 多说评论
 DUOSHUO_SECRET = '4499eb5667eb96bdc09fd75f83b2323d'
-
 DUOSHUO_SHORT_NAME = 'felixonly'
 
 
