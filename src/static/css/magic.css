@@ -1,0 +1,53 @@
+.content .art-magic-ul {
+    margin-top: 6px;
+    width: 700px;
+}
+
+.content .article .art-magic-des {
+    font-size: 18px;
+    padding-left: 35px;
+    padding-top: 15px;
+}
+
+.content .art-magic-ul a {
+    text-decoration: none;
+}
+
+.content .art-magic-li {
+    width: 170px;
+    height: 195px;
+    margin: 20px 0 10px 51px;
+    border: 0.3px solid lightgrey;
+    float: left;
+    border-radius: 6px;
+    box-shadow: 0.2px 1px 0.5px 0 grey;
+    background-color: #f8f8f8;
+}
+
+.content .art-magic-li img {
+    width: 161px;
+    height: 161px;
+    margin: 4px auto 0;
+    display: block;
+    border-radius: 5px;
+}
+
+.content .art-magic-li p {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.content .art-magic-ul :hover {
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+
+#c {
+    margin: 16px 0 0 70px;
+}
+
+.article .art-description p {
+    padding: 10px 0 0 300px;
+}

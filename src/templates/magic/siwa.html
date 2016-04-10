@@ -1,0 +1,43 @@
+{% extends 'blog/blog.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>宅男必备 - 撕袜</title>
+    <meta name="description" content="宅男必备，javascript小程序，撕袜">
+    <meta name="keywords" content="宅男必备，丝袜，撕袜，发泄，高效，javascript">
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/magic.css' %}" rel="stylesheet">
+    <script src="{% static 'js/blog.js' %}"></script>
+    <script src="{% static 'js/cloth.js' %}"></script>
+{% endblock %}
+
+{% block magic %}
+    class="active"
+{% endblock %}
+
+{% block category %}
+    <div class="avatar">
+    </div>
+{% endblock %}
+
+{% block article %}
+    <div class="article">
+        <div class="art-location">
+            您现在的位置是：<a href="{% url 'index' %}">首页</a> > <a href="{% url 'magic' %}">小魔盒</a> > 撕袜
+        </div>
+        <div class="art-description">
+            <p>好了，尽情发泄吧！^_^</p>
+            <canvas id="c" width="600" height="400"></canvas>
+        </div>
+    </div>
+{% endblock %}
+
+{% block top-article %}
+{% endblock %}
+
+{% block rec-article %}
+{% endblock %}

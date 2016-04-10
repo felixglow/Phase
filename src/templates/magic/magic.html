@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Magic - Welcome to FelixGlow</title>
+    <meta name="description" content="Felix的个人网站，采用的Python Django框架开发而成，从兴趣到实践，意在学习、分享与记录。
+    技术专注于Python及相关知识，包括Python、Django、HTML、CSS、JavaScript、Redis、Linux、Mysql、Docker等。">
+    <meta name="keywords" content="编程,Python,Django,HTML,CSS,JavaScript,Redis,Linux,Mysql,Docker,个人网站,工具箱">
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/magic.css' %}" rel="stylesheet">
+    <script src="{% static 'js/blog.js' %}"></script>
+{% endblock %}
+
+{% block magic %}
+    class="active"
+{% endblock %}
+
+{% block category %}
+    <div class="avatar">
+    </div>
+{% endblock %}
+
+{% block article %}
+<div class="article">
+    <p class="art-magic-des">嗯，这是一个带有神秘气息的魔盒 <i class="fa fa-cogs fa-spin"></i></p>
+    <ul class="art-magic-ul">
+        <li class="art-magic-li">
+            <a href="https://www.baidu.com">
+            <img src="{% static 'images/robot.png' %}">
+            <p>话唠机器人</p></a>
+        </li>
+        <li class="art-magic-li">
+            <a href="{% url 'siwa' %}">
+            <img src="{% static 'images/zn.png' %}">
+            <p>宅男必备 - 撕袜</p></a>
+        </li>
+        <li class="art-magic-li">
+            <a href="https://www.baidu.com">
+            <img src="{% static 'images/ewm.png' %}">
+            <p>二维码生成器</p></a>
+        </li>
+        <li class="art-magic-li">
+            <a href="https://www.zhihu.com/" target="_blank">
+            <img src="{% static 'images/wh.png' %}">
+            <p>没想好...</p></a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block top-article %}
+{% endblock %}
+
+{% block rec-article %}
+{% endblock %}

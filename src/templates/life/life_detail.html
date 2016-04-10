@@ -1,0 +1,55 @@
+{% extends 'life/life.html' %}
+{% load static %}
+
+{% block title %}
+    <title>{{ article.name }}</title>
+    <meta name="description" content="Felix的个人网站，采用的Python Django框架开发而成，从兴趣到实践，意在学习、分享与记录。
+    技术专注于Python及相关知识，包括Python、Django、HTML、CSS、JavaScript、Redis、Linux、Mysql、Docker等。">
+    <meta name="keywords" content="编程,Python,Django,HTML,CSS,JavaScript,Redis,Linux,Mysql,Docker,个人网站">
+{% endblock %}
+
+{% block article %}
+    <div class="article">
+        <div class="art-location">
+            <i class="fa fa-map-marker fa-2x"></i> 您现在的位置是：<a href="{% url 'index' %}">首页</a>
+            <i class="fa fa-angle-right"></i> <a href="{% url 'life_list' %}">慢生活</a> <i class="fa fa-angle-right"></i> 慢生活详情
+        </div>
+        <div class="art-description">
+            <h3>{{ article.name }}</h3>
+            <p class="art-property"><span class="d_time">发布时间：{{ article.publish_time|date:'Y-n-d'}} </span><span>作者：{{ article.author }} </span><span>浏览（{{ article.click_count }}）</span></p>
+            <div class="art-detail">{{ article.content|safe }}</div>
+        </div>
+        <div class="art-next">
+              <p>上一篇：
+              {% if before_art %}
+                  <a href="{% url 'life_detail' before_art.id %}">{{ before_art.name }}</a>
+              {% else %}
+                  没有上一篇
+              {% endif %}
+              </p>
+              <p>下一篇：
+              {% if next_art %}
+                  <a href="{% url 'life_detail' next_art.id %}">{{ next_art.name }}</a>
+              {% else %}
+                  没有下一篇
+              {% endif %}
+              </p>
+        </div>
+        <!-- 多说评论框 start -->
+	    <div class="ds-thread" data-thread-key="{{ article.id }}" data-title="{{ article.name }}"></div>
+        <!-- 多说评论框 end -->
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+        var duoshuoQuery = {short_name:"felixonly"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0]
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        </script>
+        <!-- 多说公共JS代码 end -->
+    </div>
+{% endblock %}

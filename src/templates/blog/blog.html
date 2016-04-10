@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>Blog - Welcome to FelixGlow</title>
+    <meta name="description" content="Felix的个人网站，采用的Python Django框架开发而成，从兴趣到实践，意在学习、分享与记录。
+    技术专注于Python及相关知识，包括Python、Django、HTML、CSS、JavaScript、Redis、Linux、Mysql、Docker等。">
+    <meta name="keywords" content="编程,Python,Django,HTML,CSS,JavaScript,Redis,Linux,Mysql,Docker,个人网站,博客,Blog">
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <script src="{% static 'js/blog.js' %}"></script>
+    <script src="{% static 'js/ball.js' %}"></script>
+{% endblock %}
+
+{% block blog %}
+    class="active"
+{% endblock %}
+
+{% block article %}
+<div class="article">
+    <ul class="art-ul">
+        {% for obj in articles %}
+            <li>
+                <h3><a href="{% url 'blog_detail' obj.id %}">{{ obj.name }}</a></h3>
+                <p class="property"><span>作者： {{ obj.author }}</span> | <span>标签：
+                    {% for t in obj.tags.all %}
+                        <a href="{% url 'tag_query' t.id %}">{{ t.name }}</a>
+                    {% endfor %}
+                </span> | <span>阅读：（{{ obj.click_count }}）</span></p>
+                <a href="{% url 'blog_detail' obj.id %}" class="art-intro">{{ obj.content|safe|truncatewords_html:10 }}</a>
+                <p class="dateview">{{ obj.publish_time|date:'Y-n-d' }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="btn">
+        <ul class="pagination">
+            <li>
+                <a class="paginator-previous" href="
+                    {% if page_obj.has_previous %}
+                        {% url 'blog_list_page' page_obj.previous_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                "><<</a>
+            </li>
+            {% for obj in page_obj.range_list %}
+                <li>
+                {% if obj == page_obj.number %}
+                    <a href="javascript:;" class="active">{{ obj }}</a>
+                {% else %}
+                    <a href="{% url 'blog_list_page' obj %}">{{ obj }}</a>
+                {% endif %}</li>
+            {% endfor %}
+            <li>
+                <a href="
+                    {% if page_obj.has_next %}
+                        {% url 'blog_list_page' page_obj.next_page_number %}
+                    {% else %}
+                        javascript:;
+                    {% endif %}
+                ">>></a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block category %}
+<div id="category">
+    {% for obj in tags %}
+    <a href="{% url 'tag_query' obj.id %}" class="{% cycle 'color1' 'color2' 'color3' 'color4' 'color5' 'color6' 'color7' 'color8' %}">{{ obj.name }}</a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block top-article %}
+<div class="top-article">
+    <h2>点击排行</h2>
+    <ul>
+        {% for obj in tops %}
+            <li><a href="{% url 'blog_detail' obj.id %}">{{ obj.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block rec-article %}
+<div class="rec-article">
+    <h2>推荐文章</h2>
+    <ul>
+        {% for obj in recommends %}
+        <li><a href="{% url 'blog_detail' obj.id %}">{{ obj.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

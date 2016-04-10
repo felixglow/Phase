@@ -1,0 +1,42 @@
+{% extends 'blog/blog.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    <title>二维码生成器</title>
+    <meta name="description" content="二维码生成器">
+    <meta name="keywords" content="二维码,自动生成,python,qrcode">
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/magic.css' %}" rel="stylesheet">
+    <script src="{% static 'js/blog.js' %}"></script>
+{% endblock %}
+
+{% block magic %}
+    class="active"
+{% endblock %}
+
+{% block category %}
+    <div class="avatar">
+    </div>
+{% endblock %}
+
+{% block article %}
+    <div class="article">
+        <div class="art-location">
+            您现在的位置是：<a href="{% url 'index' %}">首页</a> > <a href="{% url 'magic' %}">小魔盒</a> > 撕袜
+        </div>
+        <div class="art-description">
+            <p>好了，尽情发泄吧！^_^</p>
+            <canvas id="c" width="600" height="400"></canvas>
+        </div>
+    </div>
+{% endblock %}
+
+{% block top-article %}
+{% endblock %}
+
+{% block rec-article %}
+{% endblock %}
