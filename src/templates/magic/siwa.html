@@ -1,4 +1,4 @@
-{% extends 'blog/blog.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block title %}
@@ -27,9 +27,10 @@
 {% block article %}
     <div class="article">
         <div class="art-location">
-            您现在的位置是：<a href="{% url 'index' %}">首页</a> > <a href="{% url 'magic' %}">小魔盒</a> > 撕袜
+            <i class="fa fa-map-marker fa-2x"></i> 您现在的位置是：<a href="{% url 'index' %}">首页</a> <i class="fa fa-angle-right"></i>
+            <a href="{% url 'magic' %}">小魔盒</a> <i class="fa fa-angle-right"></i> 撕袜
         </div>
-        <div class="art-description">
+        <div class="siwa-description">
             <p>好了，尽情发泄吧！^_^</p>
             <canvas id="c" width="600" height="400"></canvas>
         </div>

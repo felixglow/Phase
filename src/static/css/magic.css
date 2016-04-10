@@ -1,3 +1,4 @@
+/* magic */
 .content .art-magic-ul {
     margin-top: 6px;
     width: 700px;
@@ -43,11 +44,30 @@
     top: 1px;
     left: 1px;
 }
-
+/* siwa */
 #c {
     margin: 16px 0 0 70px;
 }
 
-.article .art-description p {
+.article .siwa-description p {
     padding: 10px 0 0 300px;
 }
+
+/* qrcode */
+.article .magic-content {
+    border: 1px solid #ff0000;
+    width: 680px;
+    margin: 20px auto;
+}
+
+.article .magic-condition {
+    border: 1px solid #000000;
+    width: 300px;
+    height: 50px;
+    margin: 0 0 20px 36px;
+}
+
+.article .magic-content label {
+    float: left;
+}
+

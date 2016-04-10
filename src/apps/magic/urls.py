@@ -6,10 +6,11 @@
 __author__ = 'felix'
 
 from django.conf.urls import patterns, url
-from .views import MagicList, SiWa
+from .views import MagicList, SiWa, Qrcode
 
 
 urlpatterns = patterns('',
     url(r'^list/$', MagicList.as_view(), name="magic"),
     url(r'^siwa/$', SiWa.as_view(), name="siwa"),
+    url(r'^qrcode/$', Qrcode.as_view(), name='qrcode'),
 )
