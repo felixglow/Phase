@@ -25,7 +25,7 @@ class JsonResponseMixin(object):
     def render_json_to_response(self, status='0', *args, **kwargs):
         res = {
             'status': status,
-            'message': CODES['status']['msg'],
+            'message': CODES[status]['msg'],
             'result': kwargs.get('result')
         }
         return HttpResponse(json.dumps(res), content_type=self.content_type)

@@ -102,9 +102,38 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../', 'templates/ueditor').replace('\\', '/'),
 )
 
+# for logger
+if DEBUG:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'filters': {
+            'require_debug_false': {
+                '()': 'django.utils.log.RequireDebugFalse'
+            }
+        },
+        'handlers': {
+            'mail_admins': {
+                'level': 'ERROR',
+                'filters': ['require_debug_false'],
+                'class': 'django.utils.log.AdminEmailHandler'
+            }
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['mail_admins'],
+                'level': 'ERROR',
+                'propagate': True,
+            },
+        }
+    }
+
 # 多说评论
 DUOSHUO_SECRET = '4499eb5667eb96bdc09fd75f83b2323d'
 DUOSHUO_SHORT_NAME = 'felixonly'
+
+# 天气api
+WEATHER_KEY = '757c30259ebe4c64a963f6e3ec3873ba'
 
 
 

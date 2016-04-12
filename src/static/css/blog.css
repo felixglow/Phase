@@ -41,8 +41,12 @@ body {
     height: 100px;
     float: left;
     background-color: #fff;
+    -moz-border-radius: 2px 2px 8px 8px;
+    -webkit-border-radius: 2px 2px 8px 8px;
     border-radius: 2px 2px 8px 8px;
     box-shadow: 0.1px 0.1px 2px;
+    -webkit-box-shadow: 0.1px 0.1px 2px;
+    -moz-box-shadow: 0.1px 0.1px 2px;
     text-shadow: lightgrey 0.8px 0.8px 1px;
 
 }
@@ -69,7 +73,11 @@ body {
     min-height: 910px;
     float: left;
     background-color: #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
     border-radius: 8px;
+    -webkit-box-shadow: 0.1px 0.1px 2px;
+    -moz-box-shadow: 0.1px 0.1px 2px;
     box-shadow: 0.1px 0.1px 2px;
     margin-top: 10px;
 }
@@ -95,6 +103,8 @@ body {
 }
 
 .content .art-ul .property {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
     line-height: 30px;
     color: #999;
@@ -123,6 +133,8 @@ body {
     content: "";
     width: 10px;
     height: 10px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
     border-radius: 50%;
     position: absolute;
     background: #cac1c1;
@@ -152,7 +164,9 @@ body {
     background: #474645
     url(../images/ti.png) no-repeat;
     opacity: 0;
-    border-radius: 2px;
+    -moz-border-radius: 2px; /* Firefox */
+    -webkit-border-radius: 2px; /* Safari 和 Chrome */
+    border-radius: 2px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
     -o-transition: all 1s;
@@ -180,6 +194,8 @@ body {
     border:1px solid #D1DAE8;
     cursor:pointer;
     background-color: #ffffff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -196,6 +212,8 @@ body {
 .btn ul li .active{
     background-color: #333;
     color:white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -214,6 +232,8 @@ body {
     display: block;
     background-color:#333;
     color:white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     border-radius: 5px;
 }
 /* 分页end */
@@ -224,7 +244,11 @@ body {
     min-height: 910px;
     float: right;
     background-color: #fff;
-    border-radius: 2px 2px 5px 5px;
+    -moz-border-radius: 2px 2px 5px 5px; /* Firefox */
+    -webkit-border-radius: 2px 2px 5px 5px; /* Safari 和 Chrome */
+    border-radius: 2px 2px 5px 5px; /* Opera 10.5+, 以及使用了IE-CSS3的IE浏览器 */
+    -webkit-box-shadow: 0.1px 0.1px 2px;
+    -moz-box-shadow: 0.1px 0.1px 2px;
     box-shadow: 0.1px 0.1px 2px;
 }
 
@@ -287,9 +311,13 @@ body {
 /* 底部条 */
 .bottom {
     width: 1000px;
-    height: 108px;
+    height: 100px;
     background-color: #fff;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
     border-radius: 8px;
+    -webkit-box-shadow: 0.1px 0.1px 2px;
+    -moz-box-shadow: 0.1px 0.1px 2px;
     box-shadow: 0.1px 0.1px 2px;
     font-weight: normal;
     font-size: 14px;
@@ -305,7 +333,7 @@ body {
     width: 300px;
     height: 85px;
     float: left;
-    margin-top: 7px;
+    margin-top: 5px;
 }
 
 .bottom .bt-left {
@@ -333,7 +361,7 @@ body {
 }
 
 .bottom .bt-right {
-    margin-top: 22px;
+    margin-top: 20px;
     margin-left: 42px;
     text-align: center;
     line-height: 25px;
@@ -357,6 +385,8 @@ body {
     margin-left:510px;
     width: 49px;
     height: 67px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
     border-radius: 3px;
     background: url(../images/top.gif) no-repeat;;
 }
@@ -388,7 +418,9 @@ body {
 
 #category a:hover{
     border:1px solid #eee;
-    border-radius:5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     font-size: 18px;
 }
 
@@ -486,6 +518,8 @@ body {
     width: 160px;
     height: 160px;
     margin: 16px auto;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
     border-radius: 100%;
     background: url("../images/tx.png") no-repeat;
     background-size: 160px 160px;
@@ -496,7 +530,11 @@ body {
     width: 172px;
     height: 116px;
     margin: 8px 0 0 8px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
     border-radius: 2px;
+    -webkit-box-shadow: 0.5px 0.5px 2px lightgrey;
+    -moz-box-shadow: 0.5px 0.5px 2px lightgrey;
     box-shadow: 0.5px 0.5px 2px lightgrey;
 }
 
@@ -520,9 +558,12 @@ body {
     height: 150px;
     border: 1px solid lightgrey;
     background-color: #f8f8f8;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
     border-radius: 6px;
     cursor: default;
-
+    -webkit-box-shadow: 0.3px 0.5px 0.3px grey;
+    -moz-box-shadow: 0.3px 0.5px 0.3px grey;
     box-shadow: 0.3px 0.5px 0.3px grey;
 }
 
@@ -534,6 +575,10 @@ body {
     width: 172px;
     height: 116px;
     margin: 15px 0 0 8px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
     border-radius: 2px;
+    -webkit-box-shadow: 0.5px 0.5px 2px lightgrey;
+    -moz-box-shadow: 0.5px 0.5px 2px lightgrey;
     box-shadow: 0.5px 0.5px 2px lightgrey;
 }

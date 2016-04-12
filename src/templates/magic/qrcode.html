@@ -11,7 +11,20 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
     <link href="{% static 'css/magic.css' %}" rel="stylesheet">
-    <script src="{% static 'js/blog.js' %}"></script>
+    <script>
+      $(function() {
+        $( "#slider-range-min" ).slider({
+          range: "min",
+          value: 37,
+          min: 1,
+          max: 700,
+          slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.value );
+          }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+      });
+    </script>
 {% endblock %}
 
 {% block magic %}
@@ -30,10 +43,12 @@
             <a href="{% url 'magic' %}">小魔盒</a> <i class="fa fa-angle-right"></i> 二维码生成器
         </div>
         <div class="magic-content">
-            <label>大小:</label>
-            <div class="magic-condition">
+            <p>
+              <label for="amount">大小:</label>
+              <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
 
-            </div>
+            <div id="slider-range-min"></div>
         </div>
     </div>
 {% endblock %}

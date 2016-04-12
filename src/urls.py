@@ -21,8 +21,9 @@ urlpatterns = patterns('',
     url(r'^ueditor/', include('DjangoUeditor.urls')),
     url(r'^blog/', include('apps.blog.urls')),
     url(r'^life/', include('apps.life.urls')),
-    url(r'^magic/', include('apps.magic.urls')),
+    # url(r'^magic/', include('apps.magic.urls')),
     url(r'^share/', include('apps.share.urls')),
+    url(r'^utils/', include('apps.utils.urls')),
 )
 
 
