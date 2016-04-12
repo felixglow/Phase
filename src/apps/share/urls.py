@@ -10,6 +10,6 @@ from .views import ShareList
 
 
 urlpatterns = patterns('',
-    url(r'^list/$', ShareList.as_view(), name="share"),
-    url(r'^list/(?P<page>\d+)/$', ShareList.as_view(), name="share_page"),
+    url(r'^$', ShareList.as_view(), name="share"),
+    url(r'^(?P<page>\d+)/$', ShareList.as_view(), name="share_page"),
 )

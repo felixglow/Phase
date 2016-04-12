@@ -5,7 +5,7 @@
 
 __author__ = 'felix'
 
-from base.mixins import JsonResponseMixin, LoginRequireMixin, PaginateMixin
+from base.mixins import PaginateMixin
 from base.views import BaseView
 from .models import Share
 
