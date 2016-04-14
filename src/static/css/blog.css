@@ -47,8 +47,9 @@ body {
     box-shadow: 0.1px 0.1px 2px;
     -webkit-box-shadow: 0.1px 0.1px 2px;
     -moz-box-shadow: 0.1px 0.1px 2px;
-    text-shadow: lightgrey 0.8px 0.8px 1px;
-
+    -moz-text-shadow: 0.8px 0.8px 1px lightgrey;
+    -webkit-text-shadow: 0.8px 0.8px 1px lightgrey;
+    text-shadow: 0.8px 0.8px 1px lightgrey;
 }
 
 .content .header h1 {
@@ -286,7 +287,9 @@ body {
     text-overflow: ellipsis;
     line-height: 1.5;
     padding: 0 0 5px 14px;
-    text-shadow: grey 0.1px 0.1px 0.1px;
+    -moz-text-shadow: 0.1px 0.1px 0.1px grey;
+    -webkit-text-shadow: 0.1px 0.1px 0.1px grey;
+    text-shadow: 0.1px 0.1px 0.1px grey;
 }
 
 .sidebar-sub .rec-article {
@@ -402,7 +405,9 @@ body {
     width: 190px;
     position:relative;
     margin:30px auto;
-    text-shadow: grey 0.2px 0.2px 0.3px;
+    -moz-text-shadow: 0.2px 0.2px 0.3px grey;
+    -webkit-text-shadow: 0.2px 0.2px 0.3px grey;
+    text-shadow: 0.2px 0.2px 0.3px grey;
 }
 
 #category a{
