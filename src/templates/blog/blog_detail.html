@@ -12,6 +12,13 @@
         <div class="art-location">
             <i class="fa fa-map-marker fa-2x"></i> 您现在的位置是：<a href="{% url 'index' %}">首页</a>
             <i class="fa fa-angle-right"></i> <a href="{% url 'blog_list' %}">爱折腾</a> <i class="fa fa-angle-right"></i> 爱折腾详情
+        <div class="bdsharebuttonbox" style="float: right">
+            <a href="#" class="bds_douban" data-cmd="douban"></a>
+            <a href="#" class="bds_qzone" data-cmd="qzone"></a>
+            <a href="#" class="bds_tsina" data-cmd="tsina"></a>
+            <a href="#" class="bds_weixin" data-cmd="weixin"></a>
+            <a href="#" class="bds_more" data-cmd="more"></a>
+        </div>
         </div>
         <div class="art-description">
             <h3>{{ article.name }}</h3>
@@ -51,4 +58,17 @@
         </script>
         <!-- 多说公共JS代码 end -->
     </div>
+{% endblock %}
+
+{% block last %}
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},
+            "share":{},
+            "image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},
+            "selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}
+        };
+        with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src=
+                'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
 {% endblock %}
