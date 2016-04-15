@@ -1,0 +1,18 @@
+.sidebar .weather {
+    margin-top: 18px;
+}
+
+.sidebar .weather p {
+    text-align: center;
+}
+
+.sidebar .weather-pic {
+    width: 135px;
+    height: 166px;
+    border: 2px solid #f5f5f5;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 8px;
+    margin: 10px auto;
+    text-align: center;
+}

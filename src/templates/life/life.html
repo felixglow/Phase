@@ -11,6 +11,7 @@
 {% block script %}
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/life.css' %}" rel="stylesheet">
     <script src="{% static 'js/blog.js' %}"></script>
 {% endblock %}
 
@@ -82,4 +83,17 @@
 {% endblock %}
 
 {% block rec-article %}
+{% endblock %}
+
+{% block weather %}
+{% if flag %}
+<div class="weather">
+    <h2>当前天气</h2>
+    <div class="weather-pic"><img src={{pic_url}}></a>
+    <p>{{txt}}</p>
+    <p>气温: {{now_tmp}}°C</p>
+    </div>
+
+</div>
+{% endif %}
 {% endblock %}
