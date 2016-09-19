@@ -22,9 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_i2nav00=t+pqg85!k$q5w0k&vvcnh)nub!fi)aca(jgcu51c3'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -128,12 +125,7 @@ if DEBUG:
         }
     }
 
-# 多说评论
-DUOSHUO_SECRET = '4499eb5667eb96bdc09fd75f83b2323d'
-DUOSHUO_SHORT_NAME = 'felixonly'
 
-# 天气api
-WEATHER_KEY = '757c30259ebe4c64a963f6e3ec3873ba'
 
 
 
